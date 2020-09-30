@@ -1,0 +1,26 @@
+name: polysemy-time
+synopsis: Polysemy effect for time
+<<: !include shared/meta.yaml
+defaults:
+  local: shared/defaults.yaml
+
+library:
+  source-dirs: lib
+  other-modules:
+    - Prelude
+  generated-exposed-modules:
+    - Paths_polysemy_time
+
+dependencies:
+  - composition
+  - data-default
+  - either
+  - relude
+  - string-interpolate
+  - template-haskell
+  - time
+  - torsor
+
+tests:
+  polysemy-time-unit:
+    <<: !include shared/test.yaml

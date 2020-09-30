@@ -1,0 +1,20 @@
+<<: !include extensions.yaml
+
+dependencies:
+  - aeson
+  - name: base
+    mixin:
+      - hiding (Prelude)
+  - containers
+  - lens
+  - polysemy
+  - text
+
+ghc-options:
+  - -flate-specialise
+  - -fspecialise-aggressively
+  - -Wall
+
+when:
+  - condition: 'impl(ghc < 8.10)'
+    ghc-options: -O2
