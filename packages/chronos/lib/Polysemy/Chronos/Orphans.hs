@@ -10,6 +10,7 @@ import Chronos (
   Month(Month),
   Time,
   TimeOfDay(TimeOfDay),
+  Timespan(Timespan),
   Year(Year),
   )
 import Prelude hiding (second)
@@ -31,6 +32,7 @@ import Polysemy.Time.Data.TimeUnit (
   Minutes(Minutes),
   Months(Months),
   NanoSeconds(NanoSeconds),
+  TimeUnit(..),
   Years(Years),
   convert,
   )
@@ -134,3 +136,11 @@ instance Calendar Datetime where
     TimeOfDay (fromIntegral h) (fromIntegral m) (fromIntegral s)
   mkDatetime y mo d h mi s =
     Datetime (mkDate @Datetime y mo d) (mkTime @Datetime h mi s)
+
+instance TimeUnit Timespan where
+  nanos =
+    1
+  toNanos (Timespan ns) =
+    NanoSeconds ns
+  fromNanos (NanoSeconds ns) =
+    Timespan ns

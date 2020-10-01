@@ -7,7 +7,7 @@ import Polysemy.Chronos.Orphans ()
 import Polysemy.Time.At (interpretTimeAt)
 import qualified Polysemy.Time.Data.Time as Core
 import Polysemy.Time.Data.Time (Time)
-import Polysemy.Time.Data.TimeUnit (unNanoSeconds, TimeUnit, toNanos)
+import Polysemy.Time.Data.TimeUnit (TimeUnit, convert, toNanos, unNanoSeconds)
 import Polysemy.Time.Sleep (tSleep)
 
 type ChronosTime =
@@ -57,7 +57,7 @@ toTimespan ::
   t ->
   Timespan
 toTimespan =
-  Timespan . unNanoSeconds . toNanos
+  convert
 
 negateTimespan :: Timespan -> Timespan
 negateTimespan (Timespan t) =
