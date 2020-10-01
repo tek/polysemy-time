@@ -113,6 +113,8 @@ convert ::
 convert =
   fromNanos . toNanos
 
+defaultJson ''Years
+defaultJson ''Months
 defaultJson ''Weeks
 defaultJson ''Days
 defaultJson ''Hours
