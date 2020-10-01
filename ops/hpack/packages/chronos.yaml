@@ -11,12 +11,11 @@ library:
 
 dependencies:
   - chronos ^>= 1.1.1
-  - polysemy-plugin
+  - polysemy-plugin ^>= 0.2.5
   - name: polysemy-time
     mixin:
       - hiding (Polysemy.Time.Prelude)
       - (Polysemy.Time.Prelude as Prelude)
-  - torsor
 
 tests:
   polysemy-chronos-unit:

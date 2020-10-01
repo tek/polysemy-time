@@ -4,13 +4,14 @@ import Data.Time (Day, UTCTime)
 
 import Polysemy.Test (UnitTest, assert, runTestAuto, (===))
 import Polysemy.Test.Data.Hedgehog (Hedgehog)
-import Polysemy.Time.Calendar (mkDatetime, year)
+import Polysemy.Time (Time, mkDatetime, year)
 import qualified Polysemy.Time.Data.Time as Time
 import Polysemy.Time.Data.TimeUnit (Seconds(Seconds))
-import Polysemy.Time.Ghc (GhcTime, interpretTimeGhc, interpretTimeGhcAt)
+import Polysemy.Time.Ghc (interpretTimeGhc, interpretTimeGhcAt)
 
 prog ::
-  Members [GhcTime, Hedgehog IO] r =>
+  Ord t =>
+  Members [Time t d, Hedgehog IO] r =>
   Sem r ()
 prog = do
   time1 <- Time.now

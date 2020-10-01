@@ -7,6 +7,8 @@ import Polysemy.Time.Calendar (HasDate, date, dateToTime)
 import qualified Polysemy.Time.Data.Time as Time
 import Polysemy.Time.Data.Time (Time)
 
+-- |Determine the current time adjusted for the difference between a custom instant and the time at which the program
+-- was started.
 dateCurrentRelative ::
   ∀ diff t d r .
   Torsor t diff =>
@@ -16,6 +18,9 @@ dateCurrentRelative = do
   (startAt, startActual) <- get @(t, t)
   (`add` startAt) . (`difference` startActual) <$> Time.now @t @d
 
+-- |Given real and adjusted start time, change all calls to 'Time.Now' and 'Time.Today' to be relative to that start
+-- time.
+-- This needs to be interpreted with a vanilla interpreter for 'Time' once more.
 interpretTimeAtWithStart ::
   ∀ diff t d r a .
   Torsor t diff =>
@@ -39,6 +44,7 @@ interpretTimeAtWithStart =
       put @(t, t) (dateToTime startAt, startActual)
 {-# INLINE interpretTimeAtWithStart #-}
 
+-- |Interpret 'Time' so that the time when the program starts is @startAt@.
 interpretTimeAt ::
   ∀ (diff :: *) t d r a .
   Torsor t diff =>

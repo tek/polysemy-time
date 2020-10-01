@@ -1,15 +1,16 @@
 module Polysemy.Time.Ghc where
 
 import Control.Concurrent (threadDelay)
-import Data.Time (NominalDiffTime, Day, UTCTime, utctDay)
+import Data.Time (Day, NominalDiffTime, UTCTime, utctDay)
 import Data.Time.Clock.System (getSystemTime, systemToUTCTime)
 
-import Polysemy.Time.Orphans ()
 import Polysemy.Time.At (interpretTimeAt)
 import qualified Polysemy.Time.Data.Time as Time
 import Polysemy.Time.Data.Time (Time)
 import Polysemy.Time.Data.TimeUnit (MicroSeconds(MicroSeconds), convert)
+import Polysemy.Time.Orphans ()
 
+-- |Convenience alias for 'Data.Time'.
 type GhcTime =
   Time UTCTime Day
 
@@ -19,6 +20,7 @@ now ::
 now =
   systemToUTCTime <$> embed getSystemTime
 
+-- |Interpret 'Time' with the types from 'Data.Time'.
 interpretTimeGhc ::
   Member (Embed IO) r =>
   InterpreterFor GhcTime r
@@ -35,6 +37,7 @@ interpretTimeGhc =
     Time.SetDate _ ->
       unit
 
+-- |Interpret 'Time' with the types from 'Data.Time', customizing the current time at the start of interpretation.
 interpretTimeGhcAt ::
   Member (Embed IO) r =>
   UTCTime ->

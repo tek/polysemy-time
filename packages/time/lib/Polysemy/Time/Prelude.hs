@@ -2,7 +2,6 @@
 
 module Polysemy.Time.Prelude (
   module Polysemy.Time.Prelude,
-  module Control.Lens,
   module Data.Aeson,
   module Data.Aeson.TH,
   module Data.Composition,
@@ -24,23 +23,21 @@ module Polysemy.Time.Prelude (
 ) where
 
 import Control.Exception (throwIO, try)
-import Control.Lens (at, makeClassy, over, (%~), (.~), (<>~), (?~), (^.))
 import qualified Data.Aeson as Aeson
 import Data.Aeson (FromJSON(parseJSON), ToJSON(toJSON))
 import Data.Aeson.TH (deriveFromJSON, deriveJSON)
 import Data.Composition ((.:), (.:.), (.::))
 import Data.Default (Default(def))
 import Data.Either.Combinators (mapLeft)
+import Data.Fixed (div')
 import Data.Foldable (foldl, traverse_)
 import Data.List.NonEmpty ((<|))
 import qualified Data.Map.Strict as Map
 import Data.Map.Strict (Map, lookup)
-import Data.String.Interpolate (i)
 import qualified Data.Text as Text
 import GHC.Err (undefined)
 import GHC.IO.Unsafe (unsafePerformIO)
 import GHC.TypeLits (Symbol)
-import Language.Haskell.TH.Quote (QuasiQuoter)
 import qualified Language.Haskell.TH.Syntax as TH
 import Polysemy (
   Effect,
@@ -325,26 +322,23 @@ mneToList =
   maybe [] toList
 {-# inline mneToList #-}
 
-qt :: QuasiQuoter
-qt =
-  i
-{-# inline qt #-}
-
 safeDiv ::
   Eq a =>
-  Fractional a =>
+  Real a =>
+  Integral a =>
   a ->
   a ->
   Maybe a
 safeDiv _ 0 =
   Nothing
 safeDiv n d =
-  Just (n / d)
+  Just (n `div'` d)
 {-# inline safeDiv #-}
 
 divOr0 ::
   Eq a =>
-  Fractional a =>
+  Real a =>
+  Integral a =>
   a ->
   a ->
   a

@@ -1,12 +1,12 @@
 module Polysemy.Time.Calendar where
 
 import Data.Time (
-  timeOfDayToTime,
-  fromGregorian,
   Day,
   DiffTime,
   TimeOfDay(TimeOfDay),
   UTCTime(UTCTime),
+  fromGregorian,
+  timeOfDayToTime,
   timeToTimeOfDay,
   toGregorian,
   utctDay,
@@ -15,31 +15,40 @@ import Prelude hiding (second)
 
 import Polysemy.Time.Data.TimeUnit (Days, Hours, Minutes, Months, NanoSeconds, Seconds, Years, convert)
 
+-- |Utility for 'Polysemy.Time.At.interpretTimeAtWithStart'.
 class HasDate t d | t -> d where
   date :: t -> d
   dateToTime :: d -> t
 
+-- |Extract the year component from a date.
 class HasYear t where
   year :: t -> Years
 
+-- |Extract the month component from a date.
 class HasMonth t where
   month :: t -> Months
 
+-- |Extract the day component from a date.
 class HasDay t where
   day :: t -> Days
 
+-- |Extract the hour component from a datetime or time.
 class HasHour t where
   hour :: t -> Hours
 
+-- |Extract the minute component from a datetime or time.
 class HasMinute t where
   minute :: t -> Minutes
 
+-- |Extract the second component from a datetime or time.
 class HasSecond t where
   second :: t -> Seconds
 
+-- |Extract the nanosecond component from a datetime or time.
 class HasNanoSecond t where
   nanoSecond :: t -> NanoSeconds
 
+-- |Construct datetimes, dates or times from integers.
 class Calendar dt where
   type CalendarDate dt :: *
   type CalendarTime dt :: *

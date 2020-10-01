@@ -1,7 +1,17 @@
 module Polysemy.Time.Data.TimeUnit where
 
+import Data.Time (
+  DiffTime,
+  NominalDiffTime,
+  diffTimeToPicoseconds,
+  nominalDiffTimeToSeconds,
+  picosecondsToDiffTime,
+  secondsToNominalDiffTime,
+  )
 import Torsor (Additive, Scaling, scale)
 
+-- |Types that represent an amount of time that can be converted to each other.
+-- The methods are internal, the API function is 'convert'.
 class TimeUnit t where
   nanos :: NanoSeconds
 
@@ -14,6 +24,8 @@ class TimeUnit t where
   default fromNanos :: Integral t => NanoSeconds -> t
   fromNanos n =
     fromIntegral (n `div` (fromIntegral (nanos @t)))
+
+-- * Data types used to specify time spans, e.g. for sleeping.
 
 newtype Years =
   Years { unYear :: Int64 }
@@ -105,6 +117,29 @@ instance TimeUnit NanoSeconds where
   fromNanos =
     id
 
+instance TimeUnit DiffTime where
+  nanos =
+    0
+  toNanos dt =
+    NanoSeconds (divOr0 (fromIntegral (diffTimeToPicoseconds dt)) 1000)
+  fromNanos (NanoSeconds ns) =
+    picosecondsToDiffTime (fromIntegral ns * 1000)
+
+instance TimeUnit NominalDiffTime where
+  nanos =
+    0
+  toNanos dt =
+    NanoSeconds (divOr0 (fromIntegral (fromEnum (nominalDiffTimeToSeconds dt))) 1000)
+  fromNanos (NanoSeconds ns) =
+    secondsToNominalDiffTime (toEnum (fromIntegral ns) * 1000)
+
+-- |Convert between different time spans.
+--
+-- >>> convert (picosecondsToDiffTime 50000000) :: MicroSeconds
+-- MicroSeconds {unMicroSeconds = 50}
+--
+-- >>> convert (MilliSeconds 5) :: MicroSeconds
+-- MicroSeconds 5000
 convert ::
   TimeUnit a =>
   TimeUnit b =>

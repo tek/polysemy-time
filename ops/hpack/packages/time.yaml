@@ -12,14 +12,14 @@ library:
     - Paths_polysemy_time
 
 dependencies:
-  - composition
-  - data-default
+  - composition ^>= 1.0
+  - data-default ^>= 0.7
   - either
-  - relude
-  - string-interpolate
+  - relude ^>= 0.7
+  - string-interpolate >= 0.1 && < 0.4
   - template-haskell
   - time
-  - torsor
+  - torsor ^>= 0.1
 
 tests:
   polysemy-time-unit:
