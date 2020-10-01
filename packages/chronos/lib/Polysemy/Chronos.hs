@@ -3,4 +3,4 @@ module Polysemy.Chronos (
 ) where
 
 import Polysemy.Chronos.Orphans ()
-import Polysemy.Chronos.Time (ChronosTime, interpretTimeChronos, interpretTimeChronosAt)
+import Polysemy.Chronos.Time (ChronosTime, interpretTimeChronos, interpretTimeChronosAt, toTimespan)
