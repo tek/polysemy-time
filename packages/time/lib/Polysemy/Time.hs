@@ -1,8 +1,8 @@
 module Polysemy.Time (
-  module Polysemy.Time.Data.TimeUnit,
   module Polysemy.Time.Calendar,
+  module Polysemy.Time.Data.Time,
+  module Polysemy.Time.Data.TimeUnit,
   GhcTime,
-  Time,
   interpretTimeGhc,
   interpretTimeGhcAt,
 ) where
@@ -18,7 +18,7 @@ import Polysemy.Time.Calendar (
   HasSecond(..),
   HasYear(..),
   )
-import Polysemy.Time.Data.Time (Time)
+import Polysemy.Time.Data.Time (Time(..), now, setDate, setTime, sleep, today)
 import Polysemy.Time.Data.TimeUnit (
   Days(Days),
   Hours(Hours),
