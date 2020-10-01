@@ -30,6 +30,7 @@ library
       Polysemy.Time.Ghc
       Polysemy.Time.Orphans
       Polysemy.Time.Prelude
+      Polysemy.Time.Sleep
       Paths_polysemy_time
   other-modules:
       Prelude
