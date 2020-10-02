@@ -4,9 +4,7 @@ import Data.Time (
   DiffTime,
   NominalDiffTime,
   diffTimeToPicoseconds,
-  nominalDiffTimeToSeconds,
   picosecondsToDiffTime,
-  secondsToNominalDiffTime,
   )
 import Torsor (Additive, Scaling, scale)
 
@@ -129,9 +127,9 @@ instance TimeUnit NominalDiffTime where
   nanos =
     0
   toNanos dt =
-    NanoSeconds (divOr0 (fromIntegral (fromEnum (nominalDiffTimeToSeconds dt))) 1000)
+    NanoSeconds (divOr0 (fromIntegral (fromEnum dt)) 1000)
   fromNanos (NanoSeconds ns) =
-    secondsToNominalDiffTime (toEnum (fromIntegral ns) * 1000)
+    toEnum (fromIntegral ns) * 1000
 
 -- |Convert between different time spans.
 --
