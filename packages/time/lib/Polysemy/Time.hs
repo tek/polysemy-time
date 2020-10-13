@@ -25,7 +25,7 @@ import Polysemy.Time.Calendar (
   HasSecond(..),
   HasYear(..),
   )
-import Polysemy.Time.Data.Time (Time(..), now, setDate, setTime, sleep, today)
+import Polysemy.Time.Data.Time (Time(..), adjust, now, setDate, setTime, sleep, today)
 import Polysemy.Time.Data.TimeUnit (
   Days(Days),
   Hours(Hours),
