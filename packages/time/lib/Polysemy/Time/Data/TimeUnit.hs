@@ -6,22 +6,22 @@ import Data.Time (
   diffTimeToPicoseconds,
   picosecondsToDiffTime,
   )
-import Torsor (Additive, Scaling, scale)
+import Torsor (Additive, Scaling, Torsor, add, scale)
 
 -- |Types that represent an amount of time that can be converted to each other.
 -- The methods are internal, the API function is 'convert'.
-class TimeUnit t where
+class TimeUnit u where
   nanos :: NanoSeconds
 
-  toNanos :: t -> NanoSeconds
-  default toNanos :: Integral t => t -> NanoSeconds
-  toNanos t =
-    scale (fromIntegral t) (nanos @t)
+  toNanos :: u -> NanoSeconds
+  default toNanos :: Integral u => u -> NanoSeconds
+  toNanos u =
+    scale (fromIntegral u) (nanos @u)
 
-  fromNanos :: NanoSeconds -> t
-  default fromNanos :: Integral t => NanoSeconds -> t
+  fromNanos :: NanoSeconds -> u
+  default fromNanos :: Integral u => NanoSeconds -> u
   fromNanos n =
-    fromIntegral (n `div` (fromIntegral (nanos @t)))
+    fromIntegral (n `div` (fromIntegral (nanos @u)))
 
 -- * Data types used to specify time spans, e.g. for sleeping.
 
@@ -145,6 +145,18 @@ convert ::
   b
 convert =
   fromNanos . toNanos
+
+type AddTimeUnit t u1 u2 =
+  (TimeUnit u1, TimeUnit u2, Torsor t u2)
+
+addTimeUnit ::
+  ∀ t u1 u2 .
+  AddTimeUnit t u1 u2 =>
+  u1 ->
+  t ->
+  t
+addTimeUnit =
+  add . convert
 
 defaultJson ''Years
 defaultJson ''Months

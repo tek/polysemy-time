@@ -34,6 +34,8 @@ interpretTimeGhc =
       embed (threadDelay (fromIntegral us))
     Time.SetTime _ ->
       unit
+    Time.Adjust _ ->
+      unit
     Time.SetDate _ ->
       unit
 

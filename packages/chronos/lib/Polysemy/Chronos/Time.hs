@@ -41,6 +41,8 @@ interpretTimeChronos =
       tSleep t
     Core.SetTime _ ->
       unit
+    Core.Adjust _ ->
+      unit
     Core.SetDate _ ->
       unit
 {-# INLINE interpretTimeChronos #-}

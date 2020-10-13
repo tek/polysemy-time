@@ -6,6 +6,7 @@ import Torsor (Torsor(add), difference)
 import Polysemy.Time.Calendar (HasDate, date, dateToTime)
 import qualified Polysemy.Time.Data.Time as Time
 import Polysemy.Time.Data.Time (Time)
+import Polysemy.Time.Data.TimeUnit (TimeUnit, addTimeUnit)
 
 -- |Determine the current time adjusted for the difference between a custom instant and the time at which the program
 -- was started.
@@ -24,6 +25,7 @@ dateCurrentRelative = do
 interpretTimeAtWithStart ::
   ∀ diff t d r a .
   Torsor t diff =>
+  TimeUnit diff =>
   HasDate t d =>
   Members [Time t d, Embed IO, State (t, t)] r =>
   Sem r a ->
@@ -39,6 +41,8 @@ interpretTimeAtWithStart =
     Time.SetTime startAt -> do
       startActual <- Time.now @t @d
       put @(t, t) (startAt, startActual)
+    Time.Adjust diff -> do
+      modify' @(t, t) \ (old, actual) -> (addTimeUnit diff old, actual)
     Time.SetDate startAt -> do
       startActual <- Time.now @t @d
       put @(t, t) (dateToTime startAt, startActual)
@@ -47,6 +51,7 @@ interpretTimeAtWithStart =
 -- |Interpret 'Time' so that the time when the program starts is @startAt@.
 interpretTimeAt ::
   ∀ (diff :: *) t d r a .
+  TimeUnit diff =>
   Torsor t diff =>
   HasDate t d =>
   Members [Time t d, Embed IO] r =>
