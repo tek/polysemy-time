@@ -65,6 +65,7 @@ test-suite polysemy-time-unit
   main-is: Main.hs
   other-modules:
       Polysemy.Time.GhcTimeTest
+      Polysemy.Time.TimeUnitTest
       Paths_polysemy_time
   hs-source-dirs:
       test

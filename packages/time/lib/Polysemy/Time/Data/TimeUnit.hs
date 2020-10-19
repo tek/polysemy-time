@@ -8,6 +8,17 @@ import Data.Time (
   )
 import Torsor (Additive, Scaling, Torsor, add, scale)
 
+newtype FromSeconds a =
+  FromSeconds a
+  deriving (Eq, Show)
+  deriving newtype (Num)
+
+instance (Integral a, TimeUnit a) => Fractional (FromSeconds a) where
+  fromRational secs =
+    FromSeconds (convert (NanoSeconds (round (1e9 * secs))))
+  FromSeconds a / FromSeconds b =
+    FromSeconds (a `div` b)
+
 -- |Types that represent an amount of time that can be converted to each other.
 -- The methods are internal, the API function is 'convert'.
 class TimeUnit u where
@@ -84,6 +95,7 @@ newtype MilliSeconds =
   MilliSeconds { unMilliSeconds :: Int64 }
   deriving (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
+  deriving (Fractional) via (FromSeconds MilliSeconds)
 
 instance TimeUnit MilliSeconds where
   nanos =
@@ -93,6 +105,7 @@ newtype MicroSeconds =
   MicroSeconds { unMicroSeconds :: Int64 }
   deriving (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
+  deriving (Fractional) via (FromSeconds MicroSeconds)
 
 instance TimeUnit MicroSeconds where
   nanos =
@@ -102,6 +115,7 @@ newtype NanoSeconds =
   NanoSeconds { unNanoSeconds :: Int64 }
   deriving (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
+  deriving (Fractional) via (FromSeconds NanoSeconds)
 
 instance Scaling NanoSeconds Int64 where
   scale s (NanoSeconds v) =
