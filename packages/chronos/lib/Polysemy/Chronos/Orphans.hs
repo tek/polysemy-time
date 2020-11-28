@@ -133,7 +133,7 @@ instance Calendar Datetime where
   mkDate y m d =
     Date (Year (fromIntegral y)) (Month (fromIntegral m)) (DayOfMonth (fromIntegral d))
   mkTime h m s =
-    TimeOfDay (fromIntegral h) (fromIntegral m) (fromIntegral s)
+    TimeOfDay (fromIntegral h) (fromIntegral m) (fromIntegral (s * 1000000000))
   mkDatetime y mo d h mi s =
     Datetime (mkDate @Datetime y mo d) (mkTime @Datetime h mi s)
 
