@@ -36,7 +36,6 @@ import qualified Data.Map.Strict as Map
 import Data.Map.Strict (Map, lookup)
 import qualified Data.Text as Text
 import GHC.Err (undefined)
-import GHC.IO.Unsafe (unsafePerformIO)
 import GHC.TypeLits (Symbol)
 import qualified Language.Haskell.TH.Syntax as TH
 import Polysemy (
@@ -107,26 +106,6 @@ tuple ::
 tuple fa fb =
   (,) <$> fa <*> fb
 {-# inline tuple #-}
-
-unsafeLogSAnd :: Show a => a -> b -> b
-unsafeLogSAnd a b =
-  unsafePerformIO $ print a >> return b
-{-# inline unsafeLogSAnd #-}
-
-unsafeLogAnd :: Text -> b -> b
-unsafeLogAnd a b =
-  unsafePerformIO $ putStrLn (toString a) >> return b
-{-# inline unsafeLogAnd #-}
-
-unsafeLogS :: Show a => a -> a
-unsafeLogS a =
-  unsafePerformIO $ print a >> return a
-{-# inline unsafeLogS #-}
-
-unsafeLog :: Text -> Text
-unsafeLog a =
-  unsafePerformIO $ putStrLn (toString a) >> return a
-{-# inline unsafeLog #-}
 
 liftT ::
   forall m f r e a .

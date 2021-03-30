@@ -11,7 +11,7 @@ library:
 
 dependencies:
   - chronos ^>= 1.1.1
-  - polysemy-plugin ^>= 0.2.5
+  - polysemy-plugin >= 0.2.5
   - name: polysemy-time
     mixin:
       - hiding (Polysemy.Time.Prelude)
