@@ -1,7 +1,7 @@
 <<: !include extensions.yaml
 
 dependencies:
-  - aeson ^>= 1.4
+  - aeson >= 1.4 && < 1.6
   - name: base
     version: '>= 4 && < 5'
     mixin:
@@ -14,7 +14,3 @@ ghc-options:
   - -flate-specialise
   - -fspecialise-aggressively
   - -Wall
-
-when:
-  - condition: 'impl(ghc < 8.10)'
-    ghc-options: -O2

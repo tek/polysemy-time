@@ -2,60 +2,44 @@
   description = "Polysemy effect for time";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/cfed29bfcb28259376713005d176a6f82951014a;
-    flake-utils.url = github:numtide/flake-utils;
+    nixpkgs.url = github:NixOS/nixpkgs/c0e881852006b132236cbf0301bd1939bb50867e;
     tryp-hs.url = github:tek/tryp-hs;
-    # tryp-hs.url = path:/home/tek/code/tek/nix/tryp-hs;
     tryp-hs.inputs.nixpkgs.follows = "nixpkgs";
     chronos = {
       url = github:andrewthad/chronos;
       flake = false;
     };
-    polysemy = {
-      url = github:polysemy-research/polysemy;
-      flake = false;
-    };
-    polysemy-test = {
-      url = github:tek/polysemy-test;
-      flake = false;
-    };
+    polysemy.url = github:polysemy-research/polysemy;
+    polysemy-test.url = github:tek/polysemy-test;
   };
 
-  outputs = { self, nixpkgs, tryp-hs, flake-utils, ... }@inputs:
-  flake-utils.lib.eachSystem ["x86_64-linux"] (system:
-    let
-      project = tryp-hs.project {
-        inherit system;
-        base = ./.;
-        compiler = "ghc8102";
-        packages = {
-          polysemy-time = "packages/time";
-          polysemy-chronos = "packages/chronos";
-        };
-        overrides = import ./ops/nix/overrides.nix inputs;
-        ghci = {
-          basicArgs = ["-Wall" "-Werror"];
-        };
-        ghcid.prelude = "packages/time/lib/Prelude.hs";
-        packageDir = "packages";
-      };
-    in {
-      defaultPackage = project.ghc.polysemy-chronos;
-      devShell = project.ghcid-flake.shell;
-      legacyPackages = {
-        run = project.ghcid-flake.run;
-        cabal = project.cabal;
-        tags = project.tags.projectTags;
-        hpack = project.hpack-script {};
-      };
-      packages = {
-        polysemy-time = project.ghc.polysemy-time;
-        polysemy-chronos = project.ghc.polysemy-chronos;
-      };
-      checks = {
-        polysemy-time = project.ghc.polysemy-time;
-        polysemy-chronos = project.ghc.polysemy-chronos;
-      };
-    }
-  );
+  outputs = { tryp-hs, chronos, polysemy-test, ...}@inputs:
+  let
+    overrides = { hackage, source, ... }: {
+      path = hackage "0.8.0" "0isldidz2gypw2pz399g6rn77x9mppd1mvj5h6ify4pj4mpla0pb";
+      tasty-hedgehog = hackage "1.1.0.0" "0cs96s7z5csrlwj334v8zl459j5s4ws6gmjh59cv01wwvvrrjwd9";
+      polysemy = hackage "1.5.0.0" "1xl472xqdxnp4ysyqnackpfn6wbx03rlgwmy9907bklrh557il6d";
+      polysemy-plugin = hackage "0.3.0.0" "1frz0iksmg8bpm7ybnpz9h75hp6hajd20vpdvmi04aspklmr6hj0";
+      chronos = source.root chronos;
+      polysemy-test = source.sub polysemy-test "packages/polysemy-test";
+    };
+
+    compatOverrides = { hackage, ... }: {
+      polysemy-test = hackage "0.3.1.1" "0x0zg1kljr7a1mwmm3zrmha5inz3l2pkldnq65fvsig8f3x8rsar";
+    };
+  in
+  tryp-hs.flake {
+    base = ./.;
+    compiler = "ghc8104";
+    main = "polysemy-chronos";
+    overrides = tryp-hs.overrides overrides;
+    compatOverrides = tryp-hs.overrides compatOverrides;
+    packages = {
+      polysemy-time = "packages/time";
+      polysemy-chronos = "packages/chronos";
+    };
+    ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
+    ghcid.prelude = "packages/time/lib/Prelude.hs";
+    packageDir = "packages";
+  };
 }
