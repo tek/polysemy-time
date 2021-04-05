@@ -50,11 +50,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1614513358,
-        "narHash": "sha256-LakhOx3S1dRjnh0b5Dg3mbZyH0ToC9I8Y2wKSkBaTzU=",
+        "lastModified": 1617631617,
+        "narHash": "sha256-PARRCz55qN3gy07VJZIlFeOX420d0nGF0RzGI/9hVlw=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "5466c5bbece17adaab2d82fae80b46e807611bf3",
+        "rev": "b2c27d1a81b0dc266270fa8aeecebbd1807fc610",
         "type": "github"
       },
       "original": {
@@ -65,11 +65,11 @@
     },
     "flake-utils_2": {
       "locked": {
-        "lastModified": 1617631617,
-        "narHash": "sha256-PARRCz55qN3gy07VJZIlFeOX420d0nGF0RzGI/9hVlw=",
+        "lastModified": 1614513358,
+        "narHash": "sha256-LakhOx3S1dRjnh0b5Dg3mbZyH0ToC9I8Y2wKSkBaTzU=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "b2c27d1a81b0dc266270fa8aeecebbd1807fc610",
+        "rev": "5466c5bbece17adaab2d82fae80b46e807611bf3",
         "type": "github"
       },
       "original": {
@@ -94,21 +94,6 @@
       }
     },
     "flake-utils_4": {
-      "locked": {
-        "lastModified": 1614513358,
-        "narHash": "sha256-LakhOx3S1dRjnh0b5Dg3mbZyH0ToC9I8Y2wKSkBaTzU=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "5466c5bbece17adaab2d82fae80b46e807611bf3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_5": {
       "locked": {
         "lastModified": 1614513358,
         "narHash": "sha256-LakhOx3S1dRjnh0b5Dg3mbZyH0ToC9I8Y2wKSkBaTzU=",
@@ -269,22 +254,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1615483480,
-        "narHash": "sha256-Y5Bg5WXZf/jpfb0XTgsunt8GwtPXZhT7Ka3MNnA4IdQ=",
-        "owner": "NixOs",
-        "repo": "nixpkgs",
-        "rev": "6be212cce73f4ce4f65375fbdebcf0b87b182bc0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOs",
-        "ref": "nixos-20.09",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1616670887,
         "narHash": "sha256-wn+l9qJfR5sj5Gq4DheJHAcBDfOs9K2p9seW2f35xzs=",
         "owner": "NixOS",
@@ -299,7 +268,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1615483480,
         "narHash": "sha256-Y5Bg5WXZf/jpfb0XTgsunt8GwtPXZhT7Ka3MNnA4IdQ=",
@@ -349,8 +318,8 @@
     },
     "polysemy": {
       "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2"
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1617203992,
@@ -368,9 +337,9 @@
     },
     "polysemy-test": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_3",
-        "polysemy": "polysemy_2",
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_2",
+        "polysemy": "polysemy",
         "tryp-hs": "tryp-hs"
       },
       "locked": {
@@ -384,25 +353,6 @@
       "original": {
         "owner": "tek",
         "repo": "polysemy-test",
-        "type": "github"
-      }
-    },
-    "polysemy_2": {
-      "inputs": {
-        "flake-utils": "flake-utils_3",
-        "nixpkgs": "nixpkgs_4"
-      },
-      "locked": {
-        "lastModified": 1617203992,
-        "narHash": "sha256-wPLCdBlw2vPIhreSbOcJNT3j7PqGiE/rLBLEIUUMZzQ=",
-        "owner": "polysemy-research",
-        "repo": "polysemy",
-        "rev": "43a67061fb2a6cd2f545c5bd5e8320f2a228fb6b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "polysemy-research",
-        "repo": "polysemy",
         "type": "github"
       }
     },
@@ -444,7 +394,10 @@
       "inputs": {
         "chronos": "chronos",
         "nixpkgs": "nixpkgs",
-        "polysemy": "polysemy",
+        "polysemy": [
+          "polysemy-test",
+          "polysemy"
+        ],
         "polysemy-test": "polysemy-test",
         "tryp-hs": "tryp-hs_2"
       }
@@ -518,7 +471,7 @@
     "tryp-hs": {
       "inputs": {
         "brittany": "brittany",
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_3",
         "hls": "hls",
         "nixpkgs": [
           "nixpkgs"
@@ -548,7 +501,7 @@
     "tryp-hs_2": {
       "inputs": {
         "brittany": "brittany_2",
-        "flake-utils": "flake-utils_5",
+        "flake-utils": "flake-utils_4",
         "hls": "hls_2",
         "nixpkgs": [
           "nixpkgs"
@@ -562,11 +515,11 @@
         "thax": "thax_2"
       },
       "locked": {
-        "lastModified": 1617640434,
-        "narHash": "sha256-TSjrN14nKI5U5gatAECE97tXI1XsZoXPplktYd245Y4=",
+        "lastModified": 1617641045,
+        "narHash": "sha256-E7RUEltZW3V6GgB7995JXCkF7b2KeMoyPRFDB7ypmBM=",
         "owner": "tek",
         "repo": "tryp-hs",
-        "rev": "9bf9290eec752e51279066a0c77cf746b72a767f",
+        "rev": "3a56d1dcbaa0f064a8336589a0858d09ec870371",
         "type": "github"
       },
       "original": {

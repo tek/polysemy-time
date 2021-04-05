@@ -9,8 +9,8 @@
       url = github:andrewthad/chronos;
       flake = false;
     };
-    polysemy.url = github:polysemy-research/polysemy;
     polysemy-test.url = github:tek/polysemy-test;
+    polysemy.follows = "polysemy-test/polysemy";
   };
 
   outputs = { tryp-hs, chronos, polysemy-test, ...}@inputs:
@@ -40,6 +40,5 @@
     };
     ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
     ghcid.prelude = "packages/time/lib/Prelude.hs";
-    packageDir = "packages";
   };
 }
