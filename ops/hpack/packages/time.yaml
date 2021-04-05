@@ -15,8 +15,7 @@ dependencies:
   - composition ^>= 1.0
   - data-default ^>= 0.7
   - either
-  - relude ^>= 0.7
-  - string-interpolate >= 0.1 && < 0.4
+  - string-interpolate >= 0.2 && < 0.4
   - template-haskell
   - time
   - torsor ^>= 0.1

@@ -107,8 +107,8 @@ library
     , data-default ==0.7.*
     , either
     , polysemy >=1.3 && <1.6
-    , relude ==0.7.*
-    , string-interpolate >=0.1 && <0.4
+    , relude >=0.7 && <1.1
+    , string-interpolate >=0.2 && <0.4
     , template-haskell
     , text
     , time
@@ -197,8 +197,8 @@ test-suite polysemy-time-unit
     , polysemy-plugin
     , polysemy-test
     , polysemy-time
-    , relude ==0.7.*
-    , string-interpolate >=0.1 && <0.4
+    , relude >=0.7 && <1.1
+    , string-interpolate >=0.2 && <0.4
     , tasty
     , tasty-hedgehog
     , template-haskell
