@@ -33,9 +33,9 @@ library
       Polysemy.Time.Orphans
       Polysemy.Time.Prelude
       Polysemy.Time.Sleep
-      Paths_polysemy_time
   other-modules:
       Prelude
+      Paths_polysemy_time
   autogen-modules:
       Paths_polysemy_time
   hs-source-dirs:

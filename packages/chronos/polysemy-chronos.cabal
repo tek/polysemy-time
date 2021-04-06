@@ -24,6 +24,7 @@ library
       Polysemy.Chronos
       Polysemy.Chronos.Orphans
       Polysemy.Chronos.Time
+  other-modules:
       Paths_polysemy_chronos
   autogen-modules:
       Paths_polysemy_chronos
