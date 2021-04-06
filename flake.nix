@@ -3,14 +3,15 @@
 
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/c0e881852006b132236cbf0301bd1939bb50867e;
-    tryp-hs.url = github:tek/tryp-hs;
-    tryp-hs.inputs.nixpkgs.follows = "nixpkgs";
+    tryp-hs = {
+      url = github:tek/tryp-hs;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     chronos = {
       url = github:andrewthad/chronos;
       flake = false;
     };
     polysemy-test.url = github:tek/polysemy-test;
-    polysemy.follows = "polysemy-test/polysemy";
   };
 
   outputs = { tryp-hs, chronos, polysemy-test, ...}@inputs:

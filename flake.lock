@@ -394,10 +394,6 @@
       "inputs": {
         "chronos": "chronos",
         "nixpkgs": "nixpkgs",
-        "polysemy": [
-          "polysemy-test",
-          "polysemy"
-        ],
         "polysemy-test": "polysemy-test",
         "tryp-hs": "tryp-hs_2"
       }
@@ -515,11 +511,11 @@
         "thax": "thax_2"
       },
       "locked": {
-        "lastModified": 1617735297,
-        "narHash": "sha256-rBVE3MXQZM0cv1ASyUzT5VH5CufuGiBnZdZY1hXYQlw=",
+        "lastModified": 1617735594,
+        "narHash": "sha256-whg/sTNfKS0ipoA6LSm+LSOYiJ23GDPtzhGVzyiNP6M=",
         "owner": "tek",
         "repo": "tryp-hs",
-        "rev": "e9b504f7518fd2af0b3c1a81309d784d33d89f43",
+        "rev": "f1b9998ac0f68638ebf201e14df21ea4691526e7",
         "type": "github"
       },
       "original": {
