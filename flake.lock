@@ -343,11 +343,11 @@
         "tryp-hs": "tryp-hs"
       },
       "locked": {
-        "lastModified": 1617640585,
-        "narHash": "sha256-COKZI9gyAlrFSOxXSxGbvwooHz31ZQQCSgVqEzeWePQ=",
+        "lastModified": 1617715176,
+        "narHash": "sha256-CGkUdppTUtX9+8/3C5c9g/GB59OmwNI71Ff3F0bXZ+E=",
         "owner": "tek",
         "repo": "polysemy-test",
-        "rev": "9ece40219ed3c1cf81d037360a14d0d1a06e404f",
+        "rev": "0b1db570547794a6c19926c7b9b9ddd0c0220492",
         "type": "github"
       },
       "original": {
@@ -485,11 +485,11 @@
         "thax": "thax"
       },
       "locked": {
-        "lastModified": 1617640434,
-        "narHash": "sha256-TSjrN14nKI5U5gatAECE97tXI1XsZoXPplktYd245Y4=",
+        "lastModified": 1617641045,
+        "narHash": "sha256-E7RUEltZW3V6GgB7995JXCkF7b2KeMoyPRFDB7ypmBM=",
         "owner": "tek",
         "repo": "tryp-hs",
-        "rev": "9bf9290eec752e51279066a0c77cf746b72a767f",
+        "rev": "3a56d1dcbaa0f064a8336589a0858d09ec870371",
         "type": "github"
       },
       "original": {
@@ -515,11 +515,11 @@
         "thax": "thax_2"
       },
       "locked": {
-        "lastModified": 1617641045,
-        "narHash": "sha256-E7RUEltZW3V6GgB7995JXCkF7b2KeMoyPRFDB7ypmBM=",
+        "lastModified": 1617735186,
+        "narHash": "sha256-gbL7KAWb9PsNqXtg8ztTmpYhirZP0Nh3BaECGxuTpoc=",
         "owner": "tek",
         "repo": "tryp-hs",
-        "rev": "3a56d1dcbaa0f064a8336589a0858d09ec870371",
+        "rev": "d74954663c0903431efc2c7c9f81ace317a8a896",
         "type": "github"
       },
       "original": {

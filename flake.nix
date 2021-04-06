@@ -41,5 +41,6 @@
     };
     ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
     ghcid.prelude = "packages/time/lib/Prelude.hs";
+    versionFile = "ops/hpack/shared/meta.yaml";
   };
 }
