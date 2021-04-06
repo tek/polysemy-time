@@ -3,7 +3,7 @@ description: Please see the readme on Github at <https://github.com/tek/polysemy
 license: BSD-2-Clause-Patent
 author: Torsten Schmits
 maintainer: tek@tryp.io
-copyright: 2020 Torsten Schmits
+copyright: 2021 Torsten Schmits
 category: Time
 build-type: Simple
 extra-source-files:

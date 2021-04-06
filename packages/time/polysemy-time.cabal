@@ -11,7 +11,7 @@ description:    Please see the readme on Github at <https://github.com/tek/polys
 category:       Time
 author:         Torsten Schmits
 maintainer:     tek@tryp.io
-copyright:      2020 Torsten Schmits
+copyright:      2021 Torsten Schmits
 license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple
