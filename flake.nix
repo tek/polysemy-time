@@ -2,16 +2,9 @@
   description = "Polysemy effect for time";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/c0e881852006b132236cbf0301bd1939bb50867e;
-    tryp-hs = {
-      url = github:tek/tryp-hs;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    chronos = {
-      url = github:andrewthad/chronos;
-      flake = false;
-    };
+    chronos = { url = github:andrewthad/chronos; flake = false; };
     polysemy-test.url = github:tek/polysemy-test;
+    tryp-hs.follows = "polysemy-test/tryp-hs";
   };
 
   outputs = { tryp-hs, chronos, polysemy-test, ...}@inputs:
@@ -32,16 +25,13 @@
   in
   tryp-hs.flake {
     base = ./.;
-    compiler = "ghc8104";
     main = "polysemy-chronos";
-    overrides = tryp-hs.overrides overrides;
-    compatOverrides = tryp-hs.overrides compatOverrides;
+    inherit overrides compatOverrides;
     packages = {
       polysemy-time = "packages/time";
       polysemy-chronos = "packages/chronos";
     };
     ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
-    ghcid.prelude = "packages/time/lib/Prelude.hs";
     versionFile = "ops/hpack/shared/meta.yaml";
   };
 }
