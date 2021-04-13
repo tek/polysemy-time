@@ -149,11 +149,7 @@
     "root": {
       "inputs": {
         "chronos": "chronos",
-        "polysemy-test": "polysemy-test",
-        "tryp-hs": [
-          "polysemy-test",
-          "tryp-hs"
-        ]
+        "polysemy-test": "polysemy-test"
       }
     },
     "snap-core": {
