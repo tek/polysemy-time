@@ -2,11 +2,11 @@
   description = "Polysemy effect for time";
 
   inputs = {
-    tryp-hs.url = github:tek/tryp-hs;
+    hix.url = github:tek/hix;
     chronos = { url = github:andrewthad/chronos; flake = false; };
   };
 
-  outputs = { tryp-hs, chronos, ...}@inputs:
+  outputs = { hix, chronos, ...}@inputs:
   let
     common = { hackage, ... }: {
       polysemy-test = hackage "0.3.1.1" "0x0zg1kljr7a1mwmm3zrmha5inz3l2pkldnq65fvsig8f3x8rsar";
@@ -21,7 +21,7 @@
       chronos = source.root chronos;
     };
   in
-  tryp-hs.flake {
+  hix.flake {
     base = ./.;
     main = "polysemy-chronos";
     overrides = [common main];
