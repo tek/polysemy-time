@@ -128,28 +128,10 @@
         "type": "github"
       }
     },
-    "polysemy-test": {
-      "inputs": {
-        "tryp-hs": "tryp-hs"
-      },
-      "locked": {
-        "lastModified": 1618267799,
-        "narHash": "sha256-en3bu6toFyOy7OHOiV/AwWlrQR9Ce560qN/z4a9Pd6E=",
-        "owner": "tek",
-        "repo": "polysemy-test",
-        "rev": "35d5e12c70887bc334aa0dacc596c15125608ba5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tek",
-        "repo": "polysemy-test",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "chronos": "chronos",
-        "polysemy-test": "polysemy-test"
+        "tryp-hs": "tryp-hs"
       }
     },
     "snap-core": {
@@ -198,11 +180,11 @@
         "thax": "thax"
       },
       "locked": {
-        "lastModified": 1618267769,
-        "narHash": "sha256-77JGnWvGC4zsIazJUcJcBII0vlolrJz8UmiUpgQzsr4=",
+        "lastModified": 1618406765,
+        "narHash": "sha256-UEyKhz4PNnnIYHe3YAMTWSNUBkoKt/5UDcXFulNwa4A=",
         "owner": "tek",
         "repo": "tryp-hs",
-        "rev": "ca6eda863c2234ab2f7438f5a707b35d5e62a3df",
+        "rev": "ce4d32939c4b025ab45fb08cc4a0718cc01d0c3c",
         "type": "github"
       },
       "original": {
