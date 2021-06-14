@@ -52,8 +52,8 @@ interpretTimeChronosAt ::
   Member (Embed IO) r =>
   Chronos.Time ->
   InterpreterFor ChronosTime r
-interpretTimeChronosAt =
-  interpretTimeChronos .: interpretTimeAt @Timespan
+interpretTimeChronosAt t =
+  interpretTimeChronos . interpretTimeAt @Timespan t
 {-# INLINE interpretTimeChronosAt #-}
 
 negateTimespan :: Timespan -> Timespan

@@ -44,5 +44,5 @@ interpretTimeGhcAt ::
   Member (Embed IO) r =>
   UTCTime ->
   InterpreterFor GhcTime r
-interpretTimeGhcAt =
-  interpretTimeGhc .: interpretTimeAt @NominalDiffTime
+interpretTimeGhcAt t =
+  interpretTimeGhc . interpretTimeAt @NominalDiffTime t
