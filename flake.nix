@@ -17,7 +17,7 @@
       path = only "9.0.1" (source.root path);
       polysemy = only "9.0.1" (noHpack (minimal (source.root polysemy)));
       polysemy-plugin = only "9.0.1" (noHpack (minimal (source.sub polysemy "polysemy-plugin")));
-      polysemy-test = hackage "0.3.1.1" "0x0zg1kljr7a1mwmm3zrmha5inz3l2pkldnq65fvsig8f3x8rsar";
+      polysemy-test = hackage "0.3.1.3" "0mgcr54jvs8lf3snm709kpfd38jbf4ycf7f90px4cmf7wz5adqf7";
       relude = only "9.0.1" (hackage "1.0.0.1" "164p21334c3pyfzs839cv90438naxq9pmpyvy87113mwy51gm6xn");
       type-errors-pretty = only "9.0.1" jailbreak;
     };
@@ -27,6 +27,7 @@
       tasty-hedgehog = hackage "1.1.0.0" "0cs96s7z5csrlwj334v8zl459j5s4ws6gmjh59cv01wwvvrrjwd9";
       polysemy = hackage "1.5.0.0" "1xl472xqdxnp4ysyqnackpfn6wbx03rlgwmy9907bklrh557il6d";
       polysemy-plugin = hackage "0.3.0.0" "1frz0iksmg8bpm7ybnpz9h75hp6hajd20vpdvmi04aspklmr6hj0";
+      polysemy-test = hackage "0.3.1.3" "0mgcr54jvs8lf3snm709kpfd38jbf4ycf7f90px4cmf7wz5adqf7";
       relude = hackage "1.0.0.1" "164p21334c3pyfzs839cv90438naxq9pmpyvy87113mwy51gm6xn";
       chronos = source.root chronos;
     };
@@ -34,7 +35,7 @@
   hix.flake {
     base = ./.;
     main = "polysemy-chronos";
-    overrides = [compat main];
+    overrides = main;
     compatOverrides = compat;
     packages = {
       polysemy-time = "packages/time";
