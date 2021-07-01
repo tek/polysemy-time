@@ -1,5 +1,5 @@
 name: polysemy-time
-synopsis: Polysemy effect for time
+synopsis: Polysemy Effect for Time
 <<: !include shared/meta.yaml
 defaults:
   local: shared/defaults.yaml

@@ -1,5 +1,5 @@
 name: polysemy-chronos
-synopsis: Polysemy effect for chronos
+synopsis: Polysemy-time Interpreters for Chronos
 <<: !include shared/meta.yaml
 defaults:
   local: shared/defaults.yaml
