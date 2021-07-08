@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-chronos
-version:        0.1.2.3
+version:        0.1.2.4
 synopsis:       Polysemy-time Interpreters for Chronos
 description:    Please see the readme on Github at <https://github.com/tek/polysemy-time>
 category:       Time
