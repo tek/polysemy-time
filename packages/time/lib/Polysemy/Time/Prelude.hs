@@ -8,6 +8,7 @@ module Polysemy.Time.Prelude (
   module Data.Default,
   module Data.Either.Combinators,
   module Data.Foldable,
+  module Data.Kind,
   module Data.List.NonEmpty,
   module Data.Map.Strict,
   module GHC.Err,
@@ -16,7 +17,6 @@ module Polysemy.Time.Prelude (
   module Polysemy.AtomicState,
   module Polysemy.Time.Debug,
   module Polysemy.Error,
-  module Polysemy.Internal.Bundle,
   module Polysemy.Reader,
   module Polysemy.State,
   module Relude,
@@ -24,13 +24,14 @@ module Polysemy.Time.Prelude (
 
 import Control.Exception (throwIO, try)
 import qualified Data.Aeson as Aeson
-import Data.Aeson (FromJSON(parseJSON), ToJSON(toJSON))
+import Data.Aeson (FromJSON (parseJSON), ToJSON (toJSON))
 import Data.Aeson.TH (deriveFromJSON, deriveJSON)
 import Data.Composition ((.:), (.:.), (.::))
-import Data.Default (Default(def))
+import Data.Default (Default (def))
 import Data.Either.Combinators (mapLeft)
 import Data.Fixed (div')
 import Data.Foldable (foldl, traverse_)
+import Data.Kind (Type)
 import Data.List.NonEmpty ((<|))
 import qualified Data.Map.Strict as Map
 import Data.Map.Strict (Map, lookup)
@@ -62,10 +63,8 @@ import Polysemy (
   )
 import Polysemy.AtomicState (AtomicState, atomicGet, atomicGets, atomicModify', atomicPut, runAtomicStateTVar)
 import Polysemy.Error (Error, fromEither, mapError, note, runError, throw)
-import Polysemy.Internal.Bundle (Append)
 import Polysemy.Reader (Reader)
 import Polysemy.State (State, evalState, get, gets, modify, modify', put, runState)
-import Polysemy.Time.Debug (dbg, dbgs, dbgs_)
 import Relude hiding (
   Reader,
   State,
@@ -90,6 +89,8 @@ import Relude hiding (
   undefined,
   )
 import System.IO.Error (userError)
+
+import Polysemy.Time.Debug (dbg, dbgs, dbgs_)
 
 unit ::
   Applicative f =>
@@ -212,26 +213,23 @@ unaryRecordJson =
 type Basic a =
   (Eq a, Show a)
 
-type family Basics (as :: [*]) :: Constraint where
+type family Basics (as :: [Type]) :: Constraint where
   Basics '[] = ()
   Basics (a : as) = (Basic a, Basics as)
 
 type Eso a =
   (Basic a, Ord a)
 
-type family Esos (as :: [*]) :: Constraint where
+type family Esos (as :: [Type]) :: Constraint where
   Esos '[] = ()
   Esos (a : as) = (Eso a, Esos as)
 
 type Json a =
   (FromJSON a, ToJSON a, Basic a)
 
-type family Jsons (r :: [*]) :: Constraint where
+type family Jsons (r :: [Type]) :: Constraint where
   Jsons '[] = ()
   Jsons (a ': r) = (Json a, Jsons r)
-
-type a ++ b =
-  Append a b
 
 rightOr :: (a -> b) -> Either a b -> b
 rightOr f =

@@ -50,7 +50,7 @@ interpretTimeAtWithStart =
 
 -- |Interpret 'Time' so that the time when the program starts is @startAt@.
 interpretTimeAt ::
-  ∀ (diff :: *) t d r a .
+  ∀ (diff :: Type) t d r a .
   TimeUnit diff =>
   Torsor t diff =>
   HasDate t d =>

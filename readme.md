@@ -43,7 +43,7 @@ main =
 The only effect contained in **polysemy-time** is:
 
 ```haskell
-data Time (time :: *) (date :: *) :: Effect where
+data Time (time :: Type) (date :: Type) :: Effect where
   Now :: Time t d m t
   Today :: Time t d m d
   Sleep :: TimeUnit u => u -> Time t d m ()

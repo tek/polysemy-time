@@ -3,7 +3,7 @@ module Polysemy.Time.Data.Time where
 import Polysemy.Time.Data.TimeUnit (AddTimeUnit, TimeUnit)
 
 -- |The Time effect.
-data Time (time :: *) (date :: *) :: Effect where
+data Time (time :: Type) (date :: Type) :: Effect where
   -- |Produce the current time, possibly relative to what was set with 'SetTime' or 'SetDate'
   Now :: Time t d m t
   -- |Produce the current date, possibly relative to what was set with 'SetTime' or 'SetDate'

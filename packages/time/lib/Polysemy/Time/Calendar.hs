@@ -50,8 +50,8 @@ class HasNanoSecond t where
 
 -- |Construct datetimes, dates or times from integers.
 class Calendar dt where
-  type CalendarDate dt :: *
-  type CalendarTime dt :: *
+  type CalendarDate dt :: Type
+  type CalendarTime dt :: Type
   mkDate :: Int64 -> Int64 -> Int64 -> CalendarDate dt
   mkTime :: Int64 -> Int64 -> Int64 -> CalendarTime dt
   mkDatetime :: Int64 -> Int64 -> Int64 -> Int64 -> Int64 -> Int64 -> dt
