@@ -300,7 +300,6 @@ mneToList =
 {-# inline mneToList #-}
 
 safeDiv ::
-  Eq a =>
   Real a =>
   Integral a =>
   a ->
@@ -313,7 +312,6 @@ safeDiv n d =
 {-# inline safeDiv #-}
 
 divOr0 ::
-  Eq a =>
   Real a =>
   Integral a =>
   a ->

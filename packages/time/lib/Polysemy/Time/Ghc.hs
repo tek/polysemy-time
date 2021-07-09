@@ -7,7 +7,7 @@ import Data.Time.Clock.System (getSystemTime, systemToUTCTime)
 import Polysemy.Time.At (interpretTimeAt)
 import qualified Polysemy.Time.Data.Time as Time
 import Polysemy.Time.Data.Time (Time)
-import Polysemy.Time.Data.TimeUnit (MicroSeconds(MicroSeconds), convert)
+import Polysemy.Time.Data.TimeUnit (MicroSeconds (MicroSeconds), convert)
 import Polysemy.Time.Orphans ()
 
 -- |Convenience alias for 'Data.Time'.

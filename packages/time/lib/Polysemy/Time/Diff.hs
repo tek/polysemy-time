@@ -6,6 +6,7 @@ import Polysemy.Time.Class.Instant (Instant, dateTime)
 import Polysemy.Time.Data.TimeUnit (TimeUnit, convert)
 
 diff ::
+  ∀ dt u i1 i2 .
   TimeUnit u =>
   Torsor dt u =>
   Instant i1 dt =>

@@ -30,6 +30,7 @@ library
       Polysemy.Time.Debug
       Polysemy.Time.Diff
       Polysemy.Time.Ghc
+      Polysemy.Time.Measure
       Polysemy.Time.Orphans
       Polysemy.Time.Prelude
       Polysemy.Time.Sleep
@@ -121,8 +122,9 @@ test-suite polysemy-time-unit
   type: exitcode-stdio-1.0
   main-is: Main.hs
   other-modules:
-      Polysemy.Time.GhcTimeTest
-      Polysemy.Time.TimeUnitTest
+      Polysemy.Time.Test.GhcTimeTest
+      Polysemy.Time.Test.MeasureTest
+      Polysemy.Time.Test.TimeUnitTest
       Paths_polysemy_time
   hs-source-dirs:
       test

@@ -1,8 +1,8 @@
-module Polysemy.Time.TimeUnitTest where
+module Polysemy.Time.Test.TimeUnitTest where
 
 import Polysemy.Test (UnitTest, runTestAuto, (===))
 
-import Polysemy.Time.Data.TimeUnit (MicroSeconds(MicroSeconds), MilliSeconds(MilliSeconds))
+import Polysemy.Time.Data.TimeUnit (MicroSeconds (MicroSeconds), MilliSeconds (MilliSeconds))
 
 test_fractional :: UnitTest
 test_fractional =

@@ -1,12 +1,13 @@
-module Polysemy.Time.GhcTimeTest where
+module Polysemy.Time.Test.GhcTimeTest where
 
 import Data.Time (Day, UTCTime)
-
 import Polysemy.Test (UnitTest, assert, runTestAuto, (===))
 import Polysemy.Test.Data.Hedgehog (Hedgehog)
-import Polysemy.Time (Time, mkDatetime, year)
+
+import Polysemy.Time.Calendar (mkDatetime, year)
 import qualified Polysemy.Time.Data.Time as Time
-import Polysemy.Time.Data.TimeUnit (Days(Days), Seconds(Seconds))
+import Polysemy.Time.Data.Time (Time)
+import Polysemy.Time.Data.TimeUnit (Days (Days), Seconds (Seconds))
 import Polysemy.Time.Ghc (interpretTimeGhc, interpretTimeGhcAt)
 
 prog ::

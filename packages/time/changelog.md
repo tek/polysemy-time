@@ -1,4 +1,7 @@
-# 0.2.0.0
+# 0.1.3.0
+* Added `measure`, a combinator that returns the time span an action takes.
+
+# 0.1.1.0
 * Added `Time.Adjust`, an action that takes a time unit and adds it to the custom start time, if available.
 * Added `Fractional` instances for sub-second time units that treat literals as seconds.
 

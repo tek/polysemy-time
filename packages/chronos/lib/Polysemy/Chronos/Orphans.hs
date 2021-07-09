@@ -4,38 +4,37 @@ module Polysemy.Chronos.Orphans where
 
 import qualified Chronos as Chronos
 import Chronos (
-  Date(Date),
-  Datetime(Datetime),
-  DayOfMonth(DayOfMonth),
-  Month(Month),
+  Date (Date),
+  Datetime (Datetime),
+  DayOfMonth (DayOfMonth),
+  Month (Month),
   Time,
-  TimeOfDay(TimeOfDay),
-  Timespan(Timespan),
-  Year(Year),
+  TimeOfDay (TimeOfDay),
+  Timespan (Timespan),
+  Year (Year),
   )
-import Prelude hiding (second)
-
 import Polysemy.Time.Calendar (
-  Calendar(..),
-  HasDate(..),
-  HasDay(..),
-  HasHour(..),
-  HasMinute(..),
-  HasMonth(..),
-  HasNanoSecond(..),
-  HasSecond(..),
-  HasYear(..),
+  Calendar (..),
+  HasDate (..),
+  HasDay (..),
+  HasHour (..),
+  HasMinute (..),
+  HasMonth (..),
+  HasNanoSecond (..),
+  HasSecond (..),
+  HasYear (..),
   )
 import Polysemy.Time.Data.TimeUnit (
-  Days(Days),
-  Hours(Hours),
-  Minutes(Minutes),
-  Months(Months),
-  NanoSeconds(NanoSeconds),
-  TimeUnit(..),
-  Years(Years),
+  Days (Days),
+  Hours (Hours),
+  Minutes (Minutes),
+  Months (Months),
+  NanoSeconds (NanoSeconds),
+  TimeUnit (..),
+  Years (Years),
   convert,
   )
+import Prelude hiding (second)
 
 instance HasDate Time Date where
   date =
@@ -105,7 +104,7 @@ instance HasMinute Time where
 
 instance HasNanoSecond TimeOfDay where
   nanoSecond (TimeOfDay _ _ s) =
-    NanoSeconds (fromIntegral s)
+    NanoSeconds s
 
 instance HasNanoSecond Datetime where
   nanoSecond (Datetime _ t) =
@@ -133,7 +132,7 @@ instance Calendar Datetime where
   mkDate y m d =
     Date (Year (fromIntegral y)) (Month (fromIntegral m)) (DayOfMonth (fromIntegral d))
   mkTime h m s =
-    TimeOfDay (fromIntegral h) (fromIntegral m) (fromIntegral (s * 1000000000))
+    TimeOfDay (fromIntegral h) (fromIntegral m) (s * 1000000000)
   mkDatetime y mo d h mi s =
     Datetime (mkDate @Datetime y mo d) (mkTime @Datetime h mi s)
 

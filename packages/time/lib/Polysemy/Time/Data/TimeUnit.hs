@@ -32,7 +32,7 @@ class TimeUnit u where
   fromNanos :: NanoSeconds -> u
   default fromNanos :: Integral u => NanoSeconds -> u
   fromNanos n =
-    fromIntegral (n `div` (fromIntegral (nanos @u)))
+    fromIntegral (n `div` (nanos @u))
 
 -- * Data types used to specify time spans, e.g. for sleeping.
 
