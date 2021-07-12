@@ -13,34 +13,37 @@ module Polysemy.Time (
   -- * Data types
   module Polysemy.Time.Data.TimeUnit,
   module Polysemy.Time.Calendar,
+  -- * Combinators
+  measure,
 ) where
 
 import Polysemy.Time.Calendar (
-  Calendar(..),
-  HasDay(..),
-  HasHour(..),
-  HasMinute(..),
-  HasMonth(..),
-  HasNanoSecond(..),
-  HasSecond(..),
-  HasYear(..),
+  Calendar (..),
+  HasDay (..),
+  HasHour (..),
+  HasMinute (..),
+  HasMonth (..),
+  HasNanoSecond (..),
+  HasSecond (..),
+  HasYear (..),
   )
-import Polysemy.Time.Data.Time (Time(..), adjust, now, setDate, setTime, sleep, today)
+import Polysemy.Time.Data.Time (Time (..), adjust, now, setDate, setTime, sleep, today)
 import Polysemy.Time.Data.TimeUnit (
-  Days(Days),
-  Hours(Hours),
-  MicroSeconds(MicroSeconds),
-  MilliSeconds(MilliSeconds),
-  Minutes(Minutes),
-  Months(Months),
-  NanoSeconds(NanoSeconds),
-  Seconds(Seconds),
+  Days (Days),
+  Hours (Hours),
+  MicroSeconds (MicroSeconds),
+  MilliSeconds (MilliSeconds),
+  Minutes (Minutes),
+  Months (Months),
+  NanoSeconds (NanoSeconds),
+  Seconds (Seconds),
   TimeUnit,
-  Weeks(Weeks),
-  Years(Years),
+  Weeks (Weeks),
+  Years (Years),
   convert,
   )
 import Polysemy.Time.Ghc (GhcTime, interpretTimeGhc, interpretTimeGhcAt)
+import Polysemy.Time.Measure (measure)
 import Polysemy.Time.Orphans ()
 
 {- $intro

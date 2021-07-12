@@ -101,19 +101,19 @@ library
       ViewPatterns
   ghc-options: -flate-specialise -fspecialise-aggressively -Wall
   build-depends:
-      aeson >=1.4 && <1.6
+      aeson >=1.4
     , base ==4.*
-    , composition ==1.0.*
+    , composition >=1.0
     , containers
-    , data-default ==0.7.*
+    , data-default >=0.7
     , either
-    , polysemy >=1.3 && <1.6
-    , relude >=0.7 && <1.1
-    , string-interpolate >=0.2 && <0.4
+    , polysemy >=1.3
+    , relude >=0.7
+    , string-interpolate >=0.2
     , template-haskell
     , text
     , time
-    , torsor ==0.1.*
+    , torsor >=0.1
   mixins:
       base hiding (Prelude)
   default-language: Haskell2010
@@ -188,25 +188,25 @@ test-suite polysemy-time-unit
       ViewPatterns
   ghc-options: -flate-specialise -fspecialise-aggressively -Wall -threaded -rtsopts -with-rtsopts=-N -fplugin=Polysemy.Plugin
   build-depends:
-      aeson >=1.4 && <1.6
+      aeson >=1.4
     , base ==4.*
-    , composition ==1.0.*
+    , composition >=1.0
     , containers
-    , data-default ==0.7.*
+    , data-default >=0.7
     , either
     , hedgehog
-    , polysemy >=1.3 && <1.6
+    , polysemy >=1.3
     , polysemy-plugin
     , polysemy-test
     , polysemy-time
-    , relude >=0.7 && <1.1
-    , string-interpolate >=0.2 && <0.4
+    , relude >=0.7
+    , string-interpolate >=0.2
     , tasty
     , tasty-hedgehog
     , template-haskell
     , text
     , time
-    , torsor ==0.1.*
+    , torsor >=0.1
   mixins:
       base hiding (Prelude)
     , polysemy-time hiding (Prelude)
