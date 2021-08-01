@@ -88,14 +88,13 @@ library
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -fplugin=Polysemy.Plugin
+  ghc-options: -flate-specialise -fspecialise-aggressively -Wall
   build-depends:
       aeson >=1.4
     , base ==4.*
     , chronos >=1.1.1 && <1.2
     , containers
     , polysemy >=1.3
-    , polysemy-plugin >=0.2.5
     , polysemy-time
     , relude >=0.7
     , text
@@ -171,7 +170,7 @@ test-suite polysemy-chronos-unit
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N -fplugin=Polysemy.Plugin
+  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson >=1.4
     , base ==4.*
@@ -180,7 +179,6 @@ test-suite polysemy-chronos-unit
     , hedgehog
     , polysemy >=1.3
     , polysemy-chronos
-    , polysemy-plugin
     , polysemy-test
     , polysemy-time
     , relude >=0.7

@@ -12,14 +12,9 @@
       type-errors-pretty = jailbreak;
     };
 
-    compat = { hackage, minimal, unbreak, ... }: {
-      polysemy-test = hackage "0.3.1.3" "0mgcr54jvs8lf3snm709kpfd38jbf4ycf7f90px4cmf7wz5adqf7";
-    };
-
     common = { hackage, ... }: {
       polysemy = hackage "1.6.0.0" "15k51ysrfcbkww1562g8zvrlzymlk2rxhcsz9ipsb0q6h571qgvf";
-      polysemy-plugin = hackage "0.4.0.0" "0pah1a8h8ckbv2fq20hrikrd1p5a3bdxr03npkyixc6mv5k1rmck";
-      polysemy-test = hackage "0.3.1.6" "0bfh37l68a5chhjfr7gqcffsmvdgg5hqclxi0fc5xnqni2mg81ak";
+      polysemy-test = hackage "0.3.1.7" "0j33f5zh6gyhl86w8kqh6nm02915b4n32xikxc4hwcy7p5l7cl34";
     };
 
     main = { hackage, source, minimal, ... }: {
@@ -32,12 +27,12 @@
     base = ./.;
     main = "polysemy-chronos";
     overrides = [common main];
-    compatOverrides = { all = compat; ghc901 = [common compat901]; };
+    compatOverrides = { all = [common]; ghc901 = [compat901]; };
     packages = {
       polysemy-time = "packages/time";
       polysemy-chronos = "packages/chronos";
     };
-    ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
     versionFile = "ops/hpack/shared/meta.yaml";
+    easy-hls = false;
   };
 }
