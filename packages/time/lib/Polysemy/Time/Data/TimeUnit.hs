@@ -172,6 +172,14 @@ addTimeUnit ::
 addTimeUnit =
   add . convert
 
+-- |Convert a unit into a number of seconds, keeping the subsecond part as fractional digits.
+secondsFrac ::
+  TimeUnit u =>
+  u ->
+  Double
+secondsFrac u =
+  fromIntegral (unNanoSeconds (convert u)) / 1e9
+
 defaultJson ''Years
 defaultJson ''Months
 defaultJson ''Weeks
