@@ -33,6 +33,6 @@
       polysemy-chronos = "packages/chronos";
     };
     versionFile = "ops/hpack/shared/meta.yaml";
-    easy-hls = false;
+    ghcid.easy-hls = false;
   };
 }
