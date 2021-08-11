@@ -29,17 +29,17 @@ import Polysemy.Time.Calendar (
   )
 import Polysemy.Time.Data.Time (Time (..), adjust, now, setDate, setTime, sleep, today)
 import Polysemy.Time.Data.TimeUnit (
-  Days (Days),
-  Hours (Hours),
-  MicroSeconds (MicroSeconds),
-  MilliSeconds (MilliSeconds),
-  Minutes (Minutes),
-  Months (Months),
-  NanoSeconds (NanoSeconds),
-  Seconds (Seconds),
+  Days (..),
+  Hours (..),
+  MicroSeconds (..),
+  MilliSeconds (..),
+  Minutes (..),
+  Months (..),
+  NanoSeconds (..),
+  Seconds (..),
   TimeUnit,
-  Weeks (Weeks),
-  Years (Years),
+  Weeks (..),
+  Years (..),
   convert,
   )
 import Polysemy.Time.Ghc (GhcTime, interpretTimeGhc, interpretTimeGhcAt)
