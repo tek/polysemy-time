@@ -30,6 +30,7 @@ library
       Polysemy.Time.Debug
       Polysemy.Time.Diff
       Polysemy.Time.Ghc
+      Polysemy.Time.Loop
       Polysemy.Time.Measure
       Polysemy.Time.Orphans
       Polysemy.Time.Prelude

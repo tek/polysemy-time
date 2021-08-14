@@ -15,6 +15,8 @@ module Polysemy.Time (
   module Polysemy.Time.Calendar,
   -- * Combinators
   measure,
+  while,
+  loop,
 ) where
 
 import Polysemy.Time.Calendar (
@@ -43,6 +45,7 @@ import Polysemy.Time.Data.TimeUnit (
   convert,
   )
 import Polysemy.Time.Ghc (GhcTime, interpretTimeGhc, interpretTimeGhcAt)
+import Polysemy.Time.Loop (loop, while)
 import Polysemy.Time.Measure (measure)
 import Polysemy.Time.Orphans ()
 
