@@ -10,6 +10,7 @@ module Polysemy.Time (
   -- * Interpreters
   interpretTimeGhc,
   interpretTimeGhcAt,
+  interpretTimeGhcConstant,
   -- * Data types
   module Polysemy.Time.Data.TimeUnit,
   module Polysemy.Time.Calendar,
@@ -45,8 +46,8 @@ import Polysemy.Time.Data.TimeUnit (
   Years (..),
   convert,
   )
-import Polysemy.Time.Ghc (GhcTime, interpretTimeGhc, interpretTimeGhcAt)
-import Polysemy.Time.Loop (loop, while, loop_)
+import Polysemy.Time.Ghc (GhcTime, interpretTimeGhc, interpretTimeGhcAt, interpretTimeGhcConstant)
+import Polysemy.Time.Loop (loop, loop_, while)
 import Polysemy.Time.Measure (measure)
 import Polysemy.Time.Orphans ()
 

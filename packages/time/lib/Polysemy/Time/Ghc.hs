@@ -4,7 +4,7 @@ import Control.Concurrent (threadDelay)
 import Data.Time (Day, NominalDiffTime, UTCTime, utctDay)
 import Data.Time.Clock.System (getSystemTime, systemToUTCTime)
 
-import Polysemy.Time.At (interpretTimeAt)
+import Polysemy.Time.At (interceptTimeAt, interceptTimeConstant)
 import qualified Polysemy.Time.Data.Time as Time
 import Polysemy.Time.Data.Time (Time)
 import Polysemy.Time.Data.TimeUnit (MicroSeconds (MicroSeconds), convert)
@@ -45,4 +45,12 @@ interpretTimeGhcAt ::
   UTCTime ->
   InterpreterFor GhcTime r
 interpretTimeGhcAt t =
-  interpretTimeGhc . interpretTimeAt @NominalDiffTime t
+  interpretTimeGhc . interceptTimeAt @NominalDiffTime t
+
+-- |Interpret 'Time' with the types from 'Data.Time', customizing the current time to be constant.
+interpretTimeGhcConstant ::
+  Member (Embed IO) r =>
+  UTCTime ->
+  InterpreterFor GhcTime r
+interpretTimeGhcConstant t =
+  interpretTimeGhc . interceptTimeConstant t

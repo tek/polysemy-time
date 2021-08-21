@@ -1,13 +1,13 @@
 module Polysemy.Chronos.Time where
 
 import qualified Chronos as Chronos
-import Chronos (Timespan(Timespan), dateToDay, dayToDate, dayToTimeMidnight, timeToDayTruncate)
-
-import Polysemy.Chronos.Orphans ()
-import Polysemy.Time.At (interpretTimeAt)
+import Chronos (Timespan (Timespan), dateToDay, dayToDate, dayToTimeMidnight, timeToDayTruncate)
+import Polysemy.Time.At (interceptTimeAt, interceptTimeConstant)
 import qualified Polysemy.Time.Data.Time as Core
 import Polysemy.Time.Data.Time (Time)
 import Polysemy.Time.Sleep (tSleep)
+
+import Polysemy.Chronos.Orphans ()
 
 -- |Convenience alias for 'Chronos'.
 type ChronosTime =
@@ -45,7 +45,7 @@ interpretTimeChronos =
       unit
     Core.SetDate _ ->
       unit
-{-# INLINE interpretTimeChronos #-}
+{-# inline interpretTimeChronos #-}
 
 -- |Interpret 'Time' with the types from 'Chronos', customizing the current time at the start of interpretation.
 interpretTimeChronosAt ::
@@ -53,8 +53,17 @@ interpretTimeChronosAt ::
   Chronos.Time ->
   InterpreterFor ChronosTime r
 interpretTimeChronosAt t =
-  interpretTimeChronos . interpretTimeAt @Timespan t
-{-# INLINE interpretTimeChronosAt #-}
+  interpretTimeChronos . interceptTimeAt @Timespan t
+{-# inline interpretTimeChronosAt #-}
+
+-- |Interpret 'Time' with the types from 'Data.Time', customizing the current time to be constant.
+interpretTimeChronosConstant ::
+  Member (Embed IO) r =>
+  Chronos.Time ->
+  InterpreterFor ChronosTime r
+interpretTimeChronosConstant t =
+  interpretTimeChronos . interceptTimeConstant t
+{-# inline interpretTimeChronosConstant #-}
 
 negateTimespan :: Timespan -> Timespan
 negateTimespan (Timespan t) =
