@@ -102,3 +102,18 @@ interceptTimeConstant startAt sem = do
   tv <- newTVarIO startAt
   runAtomicStateTVar tv . interceptTimeConstantState @t . raise $ sem
 {-# inline interceptTimeConstant #-}
+
+-- |Interpret 'Time' so that the time is always the time at the start of interpretation.
+--
+-- The time can still be changed with 'Time.setTime', 'Time.adjust' and 'Time.setDate'.
+interceptTimeConstantNow ::
+  ∀ t d r a .
+  HasDate t d =>
+  Members [Time t d, Embed IO] r =>
+  Sem r a ->
+  Sem r a
+interceptTimeConstantNow sem = do
+  now <- Time.now @t @d
+  tv <- newTVarIO now
+  runAtomicStateTVar tv . interceptTimeConstantState @t . raise $ sem
+{-# inline interceptTimeConstantNow #-}

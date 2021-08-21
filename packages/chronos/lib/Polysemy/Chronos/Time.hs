@@ -2,7 +2,7 @@ module Polysemy.Chronos.Time where
 
 import qualified Chronos as Chronos
 import Chronos (Timespan (Timespan), dateToDay, dayToDate, dayToTimeMidnight, timeToDayTruncate)
-import Polysemy.Time.At (interceptTimeAt, interceptTimeConstant)
+import Polysemy.Time.At (interceptTimeAt, interceptTimeConstant, interceptTimeConstantNow)
 import qualified Polysemy.Time.Data.Time as Core
 import Polysemy.Time.Data.Time (Time)
 import Polysemy.Time.Sleep (tSleep)
@@ -56,7 +56,7 @@ interpretTimeChronosAt t =
   interpretTimeChronos . interceptTimeAt @Timespan t
 {-# inline interpretTimeChronosAt #-}
 
--- |Interpret 'Time' with the types from 'Data.Time', customizing the current time to be constant.
+-- |Interpret 'Time' with the types from 'Chronos', customizing the current time to be constant.
 interpretTimeChronosConstant ::
   Member (Embed IO) r =>
   Chronos.Time ->
@@ -64,6 +64,15 @@ interpretTimeChronosConstant ::
 interpretTimeChronosConstant t =
   interpretTimeChronos . interceptTimeConstant t
 {-# inline interpretTimeChronosConstant #-}
+
+-- |Interpret 'Time' with the types from 'Chronos', customizing the current time to be constantly the time at the
+-- start of interpretation.
+interpretTimeChronosConstantNow ::
+  Member (Embed IO) r =>
+  InterpreterFor ChronosTime r
+interpretTimeChronosConstantNow =
+  interpretTimeChronos . interceptTimeConstantNow @Chronos.Time
+{-# inline interpretTimeChronosConstantNow #-}
 
 negateTimespan :: Timespan -> Timespan
 negateTimespan (Timespan t) =
