@@ -1,5 +1,9 @@
 # Unreleased
+
+# 0.1.4.0
 * Add `secondsFrac`, a combinator that converts a unit into a fractional number of seconds.
+* Add combinators for repeatedly running an action with a sleep interval
+* Add interpreters that remain at a fixed instant
 
 # 0.1.3.0
 * Added `measure`, a combinator that returns the time span an action takes.
