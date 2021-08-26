@@ -8,6 +8,8 @@ uSleep ::
   Member (Embed IO) r =>
   MicroSeconds ->
   Sem r ()
+uSleep (MicroSeconds 0) =
+  unit
 uSleep (MicroSeconds us) =
   embed (threadDelay (fromIntegral us))
 
