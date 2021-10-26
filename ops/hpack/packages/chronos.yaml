@@ -8,24 +8,23 @@ library:
   source-dirs: lib
   generated-other-modules:
     - Paths_polysemy_chronos
-
-dependencies:
-  - chronos ^>= 1.1.1
-  - name: polysemy-time
-    mixin:
-      - hiding (Polysemy.Time.Prelude)
-      - (Polysemy.Time.Prelude as Prelude)
+  dependencies:
+    - chronos ^>= 1.1.1
+    - polysemy >= 1.3
+    - name: polysemy-time
+      mixin:
+        - hiding (Polysemy.Time.Prelude)
+        - (Polysemy.Time.Prelude as Prelude)
 
 tests:
   polysemy-chronos-unit:
     <<: !include shared/test.yaml
     dependencies:
-      - hedgehog
-      - polysemy-test
       - name: polysemy-time
         mixin:
-          - hiding (Prelude)
+          - hiding (Polysemy.Time.Prelude)
           - (Polysemy.Time.Prelude as Prelude)
+      - chronos
+      - polysemy-test
       - tasty
-      - tasty-hedgehog
       - polysemy-chronos
