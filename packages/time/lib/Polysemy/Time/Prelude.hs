@@ -1,3 +1,4 @@
+{-# options_haddock hide #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 
 module Polysemy.Time.Prelude (
