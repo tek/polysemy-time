@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-time
-version:        0.1.4.0
+version:        0.2.0.0
 synopsis:       Polysemy Effect for Time
 description:    Please see the readme on Github at <https://github.com/tek/polysemy-time>
 category:       Time
