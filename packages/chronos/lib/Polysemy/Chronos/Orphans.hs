@@ -12,6 +12,7 @@ import Chronos (
   TimeOfDay (TimeOfDay),
   Timespan (Timespan),
   Year (Year),
+  datetimeToTime,
   timeToDatetime,
   )
 import Polysemy.Time.Calendar (
@@ -146,10 +147,10 @@ instance TimeUnit Timespan where
   fromNanos (NanoSeconds ns) =
     Timespan ns
 
-instance Instant Chronos.Time Chronos.Datetime where
-  dateTime =
-    timeToDatetime
-
-instance Instant Chronos.Datetime Chronos.Datetime where
+instance Instant Chronos.Time Chronos.Time where
   dateTime =
     id
+
+instance Instant Chronos.Datetime Chronos.Time where
+  dateTime =
+    datetimeToTime
