@@ -10,7 +10,7 @@ library:
     - Paths_polysemy_chronos
   dependencies:
     - chronos ^>= 1.1.1
-    - polysemy >= 1.3
+    - polysemy >= 1.4
     - name: polysemy-time
       mixin:
         - hiding (Polysemy.Time.Prelude)

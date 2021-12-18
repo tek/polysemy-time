@@ -1,6 +1,7 @@
-{-# options_haddock hide #-}
-{-# LANGUAGE NoImplicitPrelude #-}
+{-# language NoImplicitPrelude #-}
+{-# options_haddock prune, hide #-}
 
+-- |Prelude, Internal
 module Polysemy.Time.Prelude (
   module Polysemy.Time.Prelude,
   module Data.Foldable,

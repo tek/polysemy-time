@@ -1,10 +1,13 @@
+{-# options_haddock prune #-}
+
+-- |Classes for constructing datetime values and extracting time components, Internal
 module Polysemy.Time.Calendar where
 
 import Data.Time (
   Day,
   DiffTime,
-  TimeOfDay(TimeOfDay),
-  UTCTime(UTCTime),
+  TimeOfDay (TimeOfDay),
+  UTCTime (UTCTime),
   fromGregorian,
   timeOfDayToTime,
   timeToTimeOfDay,

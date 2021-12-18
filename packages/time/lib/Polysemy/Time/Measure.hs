@@ -1,3 +1,4 @@
+-- |Measure an Action's Duration, Internal
 module Polysemy.Time.Measure where
 
 import Torsor (Torsor)

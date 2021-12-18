@@ -1,3 +1,4 @@
+-- |TimeUnit Class and Data Types, Internal
 module Polysemy.Time.Data.TimeUnit where
 
 import Data.Time (
@@ -8,6 +9,7 @@ import Data.Time (
   )
 import Torsor (Additive, Scaling, Torsor, add, scale)
 
+-- |For deriving via.
 newtype FromSeconds a =
   FromSeconds a
   deriving (Eq, Show)
@@ -36,16 +38,19 @@ class TimeUnit u where
 
 -- * Data types used to specify time spans, e.g. for sleeping.
 
+-- |Years.
 newtype Years =
   Years { unYear :: Int64 }
   deriving (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
 
+-- |Months.
 newtype Months =
   Months { unMonths :: Int64 }
   deriving (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
 
+-- |Weeks.
 newtype Weeks =
   Weeks { unWeeks :: Int64 }
   deriving (Eq, Show, Generic)
@@ -55,6 +60,7 @@ instance TimeUnit Weeks where
   nanos =
     NanoSeconds 604800000000000
 
+-- |Days.
 newtype Days =
   Days { unDays :: Int64 }
   deriving (Eq, Show, Generic)
@@ -64,6 +70,7 @@ instance TimeUnit Days where
   nanos =
     NanoSeconds 86400000000000
 
+-- |Hours.
 newtype Hours =
   Hours { unHours :: Int64 }
   deriving (Eq, Show, Generic)
@@ -73,6 +80,7 @@ instance TimeUnit Hours where
   nanos =
     NanoSeconds 3600000000000
 
+-- |Minutes.
 newtype Minutes =
   Minutes { unMinutes :: Int64 }
   deriving (Eq, Show, Generic)
@@ -82,6 +90,7 @@ instance TimeUnit Minutes where
   nanos =
     NanoSeconds 60000000000
 
+-- |Seconds.
 newtype Seconds =
   Seconds { unSeconds :: Int64 }
   deriving (Eq, Show, Generic)
@@ -91,6 +100,7 @@ instance TimeUnit Seconds where
   nanos =
     NanoSeconds 1000000000
 
+-- |Milliseconds.
 newtype MilliSeconds =
   MilliSeconds { unMilliSeconds :: Int64 }
   deriving (Eq, Show, Generic)
@@ -101,6 +111,7 @@ instance TimeUnit MilliSeconds where
   nanos =
     NanoSeconds 1000000
 
+-- |Microseconds.
 newtype MicroSeconds =
   MicroSeconds { unMicroSeconds :: Int64 }
   deriving (Eq, Show, Generic)
@@ -111,6 +122,8 @@ instance TimeUnit MicroSeconds where
   nanos =
     NanoSeconds 1000
 
+-- |Nanoseconds.
+-- This is the base unit for all conversions.
 newtype NanoSeconds =
   NanoSeconds { unNanoSeconds :: Int64 }
   deriving (Eq, Show, Generic)
@@ -160,9 +173,11 @@ convert ::
 convert =
   fromNanos . toNanos
 
+-- |Convenience alias for 'addTimeUnit'.
 type AddTimeUnit t u1 u2 =
   (TimeUnit u1, TimeUnit u2, Torsor t u2)
 
+-- |Add a time unit to an instant.
 addTimeUnit ::
   ∀ t u1 u2 .
   AddTimeUnit t u1 u2 =>

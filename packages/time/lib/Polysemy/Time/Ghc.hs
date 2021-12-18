@@ -1,3 +1,6 @@
+{-# options_haddock prune #-}
+
+-- |'Time' interpreters for the data types from "Data.Time", Internal
 module Polysemy.Time.Ghc where
 
 import Control.Concurrent (threadDelay)

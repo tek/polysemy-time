@@ -7,19 +7,30 @@ module Polysemy.Time (
   -- * Time effect
   module Polysemy.Time.Data.Time,
   GhcTime,
+
   -- * Interpreters
   interpretTimeGhc,
   interpretTimeGhcAt,
   interpretTimeGhcConstant,
   interpretTimeGhcConstantNow,
+
   -- * Data types
   module Polysemy.Time.Data.TimeUnit,
-  module Polysemy.Time.Calendar,
+  Calendar (..),
+  HasDay (..),
+  HasHour (..),
+  HasMinute (..),
+  HasMonth (..),
+  HasNanoSecond (..),
+  HasSecond (..),
+  HasYear (..),
+
   -- * Combinators
   measure,
   while,
   loop,
   loop_,
+  diff,
 ) where
 
 import Polysemy.Time.Calendar (
@@ -47,6 +58,7 @@ import Polysemy.Time.Data.TimeUnit (
   Years (..),
   convert,
   )
+import Polysemy.Time.Diff (diff)
 import Polysemy.Time.Ghc (
   GhcTime,
   interpretTimeGhc,

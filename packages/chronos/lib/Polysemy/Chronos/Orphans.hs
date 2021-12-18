@@ -1,5 +1,7 @@
-{-# OPTIONS_GHC -fno-warn-orphans #-}
+{-# options_ghc -fno-warn-orphans #-}
+{-# options_haddock prune, hide #-}
 
+-- |Orphans for "Chronos", Internal
 module Polysemy.Chronos.Orphans where
 
 import qualified Chronos as Chronos

@@ -1,3 +1,4 @@
+-- |Diff Combinator, Internal
 module Polysemy.Time.Diff where
 
 import Torsor (Torsor, difference)
@@ -5,6 +6,7 @@ import Torsor (Torsor, difference)
 import Polysemy.Time.Class.Instant (Instant, dateTime)
 import Polysemy.Time.Data.TimeUnit (TimeUnit, convert)
 
+-- |Subtract two arbitrary values that can be converted to an 'Instant'.
 diff ::
   ∀ dt u i1 i2 .
   TimeUnit u =>

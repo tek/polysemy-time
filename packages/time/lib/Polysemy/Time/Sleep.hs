@@ -1,8 +1,11 @@
+{-# options_haddock prune, hide #-}
+
+-- |Helpers for sleeping, Internal
 module Polysemy.Time.Sleep where
 
 import Control.Concurrent (threadDelay)
 
-import Polysemy.Time.Data.TimeUnit (MicroSeconds(MicroSeconds), TimeUnit, convert)
+import Polysemy.Time.Data.TimeUnit (MicroSeconds (MicroSeconds), TimeUnit, convert)
 
 uSleep ::
   Member (Embed IO) r =>

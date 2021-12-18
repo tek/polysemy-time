@@ -1,9 +1,11 @@
-{-# OPTIONS_GHC -fno-warn-orphans #-}
+{-# options_ghc -fno-warn-orphans #-}
+{-# options_haddock prune, hide #-}
 
+-- |Orphans for "Data.Time", Internal
 module Polysemy.Time.Orphans where
 
-import Data.Time (diffUTCTime, addUTCTime, NominalDiffTime, UTCTime)
-import Torsor (Additive(..), Torsor(..))
+import Data.Time (NominalDiffTime, UTCTime, addUTCTime, diffUTCTime)
+import Torsor (Additive (..), Torsor (..))
 
 instance Additive NominalDiffTime where
   zero =

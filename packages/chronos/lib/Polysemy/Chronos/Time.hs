@@ -1,3 +1,6 @@
+{-# options_haddock prune #-}
+
+-- |Time interpreters for "Chronos", Internal
 module Polysemy.Chronos.Time where
 
 import qualified Chronos as Chronos
@@ -9,7 +12,7 @@ import Polysemy.Time.Sleep (tSleep)
 
 import Polysemy.Chronos.Orphans ()
 
--- |Convenience alias for 'Chronos'.
+-- |Convenience alias for "Chronos".
 type ChronosTime =
   Time Chronos.Time Chronos.Date
 
@@ -27,7 +30,7 @@ dateToTime :: Chronos.Date -> Chronos.Time
 dateToTime =
   dayToTimeMidnight . dateToDay
 
--- |Interpret 'Time' with the types from 'Chronos'.
+-- |Interpret 'Time' with the types from "Chronos".
 interpretTimeChronos ::
   Member (Embed IO) r =>
   InterpreterFor ChronosTime r
@@ -47,7 +50,7 @@ interpretTimeChronos =
       unit
 {-# inline interpretTimeChronos #-}
 
--- |Interpret 'Time' with the types from 'Chronos', customizing the current time at the start of interpretation.
+-- |Interpret 'Time' with the types from "Chronos", customizing the current time at the start of interpretation.
 interpretTimeChronosAt ::
   Member (Embed IO) r =>
   Chronos.Time ->
@@ -56,7 +59,7 @@ interpretTimeChronosAt t =
   interpretTimeChronos . interceptTimeAt @Timespan t
 {-# inline interpretTimeChronosAt #-}
 
--- |Interpret 'Time' with the types from 'Chronos', customizing the current time to be constant.
+-- |Interpret 'Time' with the types from "Chronos", customizing the current time to be constant.
 interpretTimeChronosConstant ::
   Member (Embed IO) r =>
   Chronos.Time ->
@@ -65,7 +68,7 @@ interpretTimeChronosConstant t =
   interpretTimeChronos . interceptTimeConstant t
 {-# inline interpretTimeChronosConstant #-}
 
--- |Interpret 'Time' with the types from 'Chronos', customizing the current time to be constantly the time at the
+-- |Interpret 'Time' with the types from "Chronos", customizing the current time to be constantly the time at the
 -- start of interpretation.
 interpretTimeChronosConstantNow ::
   Member (Embed IO) r =>

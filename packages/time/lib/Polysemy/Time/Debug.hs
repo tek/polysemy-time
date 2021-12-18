@@ -1,10 +1,12 @@
-{-# LANGUAGE NoImplicitPrelude #-}
+{-# language NoImplicitPrelude #-}
+{-# options_haddock prune, hide #-}
 
+-- |Debug printing, Internal
 module Polysemy.Time.Debug where
 
 import Data.String.Interpolate (i)
 import qualified Data.Text as Text
-import GHC.Stack (SrcLoc(..))
+import GHC.Stack (SrcLoc (..))
 import Relude
 import System.IO.Unsafe (unsafePerformIO)
 
