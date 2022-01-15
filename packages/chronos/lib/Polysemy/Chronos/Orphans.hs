@@ -135,7 +135,7 @@ instance Calendar Datetime where
   type CalendarDate Datetime = Date
   type CalendarTime Datetime = TimeOfDay
   mkDate y m d =
-    Date (Year (fromIntegral y)) (Month (fromIntegral m)) (DayOfMonth (fromIntegral d))
+    Date (Year (fromIntegral y)) (Month (fromIntegral m - 1)) (DayOfMonth (fromIntegral d))
   mkTime h m s =
     TimeOfDay (fromIntegral h) (fromIntegral m) (s * 1000000000)
   mkDatetime y mo d h mi s =
