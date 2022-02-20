@@ -106,7 +106,6 @@ library
     , base ==4.*
     , polysemy >=1.4
     , relude >=0.7
-    , string-interpolate >=0.2
     , template-haskell
     , text
     , time

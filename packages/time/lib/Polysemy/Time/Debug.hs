@@ -4,7 +4,6 @@
 -- |Debug printing, Internal
 module Polysemy.Time.Debug where
 
-import Data.String.Interpolate (i)
 import qualified Data.Text as Text
 import GHC.Stack (SrcLoc (..))
 import Relude
@@ -20,7 +19,7 @@ debugPrint ::
   Text ->
   IO ()
 debugPrint SrcLoc{ srcLocModule = (toText -> slm), ..} msg =
-  putStrLn [i|#{moduleName}:#{srcLocStartLine} #{msg}|]
+  putStrLn (toString moduleName <> ":" <> show srcLocStartLine <> " " <> toString msg)
   where
     moduleName =
       fromMaybe slm $ listToMaybe $ reverse $ Text.splitOn "." slm
@@ -51,7 +50,7 @@ dbgsWith ::
   a ->
   m ()
 dbgsWith prefix a =
-  debugPrintWithLoc (srcLoc callStack) [i|#{prefix}: #{show @Text a}|]
+  debugPrintWithLoc (srcLoc callStack) (prefix <> ": " <> show a)
 {-# inline dbgsWith #-}
 
 dbgs ::
