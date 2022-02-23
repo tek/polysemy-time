@@ -6,25 +6,26 @@ defaults:
 
 library:
   source-dirs: lib
-  generated-other-modules:
-    - Paths_polysemy_chronos
   dependencies:
     - chronos ^>= 1.1.1
-    - polysemy >= 1.4
-    - name: polysemy-time
-      mixin:
-        - hiding (Polysemy.Time.Prelude)
-        - (Polysemy.Time.Prelude as Prelude)
+    - incipit-core >= 0.1
+    - polysemy-time
+  when:
+    condition: false
+    generated-other-modules:
+      - Paths_polysemy_chronos
 
 tests:
   polysemy-chronos-unit:
     <<: !include shared/test.yaml
     dependencies:
-      - name: polysemy-time
-        mixin:
-          - hiding (Polysemy.Time.Prelude)
-          - (Polysemy.Time.Prelude as Prelude)
       - chronos
-      - polysemy-test
-      - tasty
+      - incipit-core
       - polysemy-chronos
+      - polysemy-test
+      - polysemy-time
+      - tasty
+    when:
+      condition: false
+      generated-other-modules:
+        - Paths_polysemy_chronos

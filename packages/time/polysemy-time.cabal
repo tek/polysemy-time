@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.34.6.
 --
 -- see: https://github.com/sol/hpack
 
@@ -27,19 +27,13 @@ library
       Polysemy.Time.Class.Instant
       Polysemy.Time.Data.Time
       Polysemy.Time.Data.TimeUnit
-      Polysemy.Time.Debug
       Polysemy.Time.Diff
       Polysemy.Time.Ghc
+      Polysemy.Time.Json
       Polysemy.Time.Loop
       Polysemy.Time.Measure
       Polysemy.Time.Orphans
-      Polysemy.Time.Prelude
       Polysemy.Time.Sleep
-  other-modules:
-      Prelude
-      Paths_polysemy_time
-  autogen-modules:
-      Paths_polysemy_time
   hs-source-dirs:
       lib
   default-extensions:
@@ -104,10 +98,9 @@ library
   build-depends:
       aeson >=1.4
     , base ==4.*
-    , polysemy >=1.4
-    , relude >=0.7
+    , incipit-core >=0.1
+    , stm
     , template-haskell
-    , text
     , time
     , torsor >=0.1
   mixins:
@@ -121,7 +114,6 @@ test-suite polysemy-time-unit
       Polysemy.Time.Test.GhcTimeTest
       Polysemy.Time.Test.MeasureTest
       Polysemy.Time.Test.TimeUnitTest
-      Paths_polysemy_time
   hs-source-dirs:
       test
   default-extensions:
@@ -185,13 +177,11 @@ test-suite polysemy-time-unit
   ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base ==4.*
-    , polysemy >=1.3
+    , incipit-core
     , polysemy-test
     , polysemy-time
     , tasty
     , time
   mixins:
       base hiding (Prelude)
-    , polysemy-time hiding (Polysemy.Time.Prelude)
-    , polysemy-time (Polysemy.Time.Prelude as Prelude)
   default-language: Haskell2010

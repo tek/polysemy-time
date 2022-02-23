@@ -3,8 +3,6 @@
 -- |Time effect, Internal
 module Polysemy.Time.Data.Time where
 
-import Polysemy (makeSem_)
-
 import Polysemy.Time.Data.TimeUnit (AddTimeUnit, TimeUnit)
 
 -- |The Time effect.

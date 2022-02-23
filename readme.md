@@ -1,7 +1,7 @@
 # About
 
-This Haskell library provides a [Polysemy] effect for accessing the current
-time and date and an implementation for [time] and [chronos].
+This Haskell library provides a [Polysemy] effect for accessing the current time and date, and interpreters using
+[time] and [chronos].
 
 # Example
 
@@ -14,7 +14,7 @@ import Polysemy.Time (MilliSeconds(MilliSeconds), Seconds(Seconds), Time, interp
 
 prog ::
   Ord t =>
-  Member (Time t d) r =>
+  Members [Time t d, Embed IO] r =>
   Sem r ()
 prog = do
   time1 <- Time.now

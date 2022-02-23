@@ -1,6 +1,7 @@
 -- |TimeUnit Class and Data Types, Internal
 module Polysemy.Time.Data.TimeUnit where
 
+import Data.Fixed (div')
 import Data.Time (
   DiffTime,
   NominalDiffTime,
@@ -8,6 +9,8 @@ import Data.Time (
   picosecondsToDiffTime,
   )
 import Torsor (Additive, Scaling, Torsor, add, scale)
+
+import Polysemy.Time.Json (json)
 
 -- |For deriving via.
 newtype FromSeconds a =
@@ -142,6 +145,28 @@ instance TimeUnit NanoSeconds where
   fromNanos =
     id
 
+safeDiv ::
+  Real a =>
+  Integral a =>
+  a ->
+  a ->
+  Maybe a
+safeDiv _ 0 =
+  Nothing
+safeDiv n d =
+  Just (n `div'` d)
+{-# inline safeDiv #-}
+
+divOr0 ::
+  Real a =>
+  Integral a =>
+  a ->
+  a ->
+  a
+divOr0 l r =
+  fromMaybe 0 (safeDiv l r)
+{-# inline divOr0 #-}
+
 instance TimeUnit DiffTime where
   nanos =
     0
@@ -195,13 +220,13 @@ secondsFrac ::
 secondsFrac u =
   fromIntegral (unNanoSeconds (convert u)) / 1e9
 
-defaultJson ''Years
-defaultJson ''Months
-defaultJson ''Weeks
-defaultJson ''Days
-defaultJson ''Hours
-defaultJson ''Minutes
-defaultJson ''Seconds
-defaultJson ''MilliSeconds
-defaultJson ''MicroSeconds
-defaultJson ''NanoSeconds
+json ''Years
+json ''Months
+json ''Weeks
+json ''Days
+json ''Hours
+json ''Minutes
+json ''Seconds
+json ''MilliSeconds
+json ''MicroSeconds
+json ''NanoSeconds

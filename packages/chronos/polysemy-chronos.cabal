@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.34.6.
 --
 -- see: https://github.com/sol/hpack
 
@@ -24,10 +24,6 @@ library
       Polysemy.Chronos
       Polysemy.Chronos.Orphans
       Polysemy.Chronos.Time
-  other-modules:
-      Paths_polysemy_chronos
-  autogen-modules:
-      Paths_polysemy_chronos
   hs-source-dirs:
       lib
   default-extensions:
@@ -92,12 +88,10 @@ library
   build-depends:
       base ==4.*
     , chronos >=1.1.1 && <1.2
-    , polysemy >=1.4
+    , incipit-core >=0.1
     , polysemy-time
   mixins:
       base hiding (Prelude)
-    , polysemy-time hiding (Polysemy.Time.Prelude)
-    , polysemy-time (Polysemy.Time.Prelude as Prelude)
   default-language: Haskell2010
 
 test-suite polysemy-chronos-unit
@@ -105,7 +99,6 @@ test-suite polysemy-chronos-unit
   main-is: Main.hs
   other-modules:
       Polysemy.Chronos.ChronosTimeTest
-      Paths_polysemy_chronos
   hs-source-dirs:
       test
   default-extensions:
@@ -170,12 +163,11 @@ test-suite polysemy-chronos-unit
   build-depends:
       base ==4.*
     , chronos
+    , incipit-core
     , polysemy-chronos
     , polysemy-test
     , polysemy-time
     , tasty
   mixins:
       base hiding (Prelude)
-    , polysemy-time hiding (Polysemy.Time.Prelude)
-    , polysemy-time (Polysemy.Time.Prelude as Prelude)
   default-language: Haskell2010

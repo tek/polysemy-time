@@ -1,7 +1,7 @@
 -- |Interceptors for fixing a specific time, Internal
 module Polysemy.Time.At where
 
-import Polysemy (intercept)
+import Control.Concurrent.STM (newTVarIO)
 import Torsor (Torsor (add), difference)
 
 import Polysemy.Time.Calendar (HasDate, date, dateToTime)
@@ -61,7 +61,7 @@ interceptTimeAt ::
   Sem r a
 interceptTimeAt startAt sem = do
   startActual <- Time.now @t @d
-  tv <- newTVarIO (startAt, startActual)
+  tv <- embed (newTVarIO (startAt, startActual))
   runAtomicStateTVar tv . interceptTimeAtWithStart @diff @t @d . raise $ sem
 {-# inline interceptTimeAt #-}
 
@@ -100,7 +100,7 @@ interceptTimeConstant ::
   Sem r a ->
   Sem r a
 interceptTimeConstant startAt sem = do
-  tv <- newTVarIO startAt
+  tv <- embed (newTVarIO startAt)
   runAtomicStateTVar tv . interceptTimeConstantState @t . raise $ sem
 {-# inline interceptTimeConstant #-}
 
@@ -115,6 +115,6 @@ interceptTimeConstantNow ::
   Sem r a
 interceptTimeConstantNow sem = do
   now <- Time.now @t @d
-  tv <- newTVarIO now
+  tv <- embed (newTVarIO now)
   runAtomicStateTVar tv . interceptTimeConstantState @t . raise $ sem
 {-# inline interceptTimeConstantNow #-}

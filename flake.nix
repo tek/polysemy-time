@@ -5,24 +5,28 @@
 
   outputs = { hix, ...}@inputs:
   let
-    ghc901 = { hackage, ... }: {
-      polysemy = hackage "1.6.0.0" "15k51ysrfcbkww1562g8zvrlzymlk2rxhcsz9ipsb0q6h571qgvf";
-      relude = hackage "1.0.0.1" "164p21334c3pyfzs839cv90438naxq9pmpyvy87113mwy51gm6xn";
+    ghc921 = { hackage, jailbreak, notest, ... }: {
+      chronos = jailbreak;
+      type-errors = notest;
     };
 
-    ghc884 = { hackage, ... }: {
-      polysemy-test = hackage "0.3.1.7" "0j33f5zh6gyhl86w8kqh6nm02915b4n32xikxc4hwcy7p5l7cl34";
+    all = { hackage, ... }: {
+      polysemy-test = hackage "0.4.0.1" "038n31xxid72vrckr3afgkvbsvqhf9q4b912agg24ppjzckq2s15";
+      polysemy = hackage "1.6.0.0" "15k51ysrfcbkww1562g8zvrlzymlk2rxhcsz9ipsb0q6h571qgvf";
+      incipit-base = hackage "0.1.0.0" "0pw3wr3yjwg4zphndnzazb7ycmjmrfqn57sjlkiqlb4hnwxk1xmk";
+      incipit-core = hackage "0.1.0.0" "1sx3zqqa95w9zqgmm7jxq9b9slqyysixbi7wz4fyldcx6iidz0pc";
     };
 
   in
-  hix.flake {
+  hix.lib.flake {
     base = ./.;
     main = "polysemy-chronos";
-    overrides = { inherit ghc901 ghc884; };
+    overrides = { inherit all ghc921; };
     packages = {
       polysemy-time = ./packages/time;
       polysemy-chronos = ./packages/chronos;
     };
-    versionFile = "ops/hpack/shared/meta.yaml";
+    hackage.versionFile = "ops/hpack/shared/meta.yaml";
+    ghci.preludePackage = "incipit-core";
   };
 }
