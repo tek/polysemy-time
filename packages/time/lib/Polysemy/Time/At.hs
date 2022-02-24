@@ -5,9 +5,9 @@ import Control.Concurrent.STM (newTVarIO)
 import Torsor (Torsor (add), difference)
 
 import Polysemy.Time.Calendar (HasDate, date, dateToTime)
-import qualified Polysemy.Time.Data.Time as Time
-import Polysemy.Time.Data.Time (Time)
 import Polysemy.Time.Data.TimeUnit (TimeUnit, addTimeUnit)
+import qualified Polysemy.Time.Effect.Time as Time
+import Polysemy.Time.Effect.Time (Time)
 
 -- |Determine the current time adjusted for the difference between a custom instant and the time at which the program
 -- was started.

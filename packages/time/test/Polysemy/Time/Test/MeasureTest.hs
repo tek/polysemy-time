@@ -3,9 +3,9 @@ module Polysemy.Time.Test.MeasureTest where
 import Data.Time (Day, UTCTime)
 import Polysemy.Test (UnitTest, assert, runTestAuto)
 
-import qualified Polysemy.Time.Data.Time as Time
+import qualified Polysemy.Time.Effect.Time as Time
 import Polysemy.Time.Data.TimeUnit (MilliSeconds (MilliSeconds), convert)
-import Polysemy.Time.Ghc (interpretTimeGhc)
+import Polysemy.Time.Interpreter.Ghc (interpretTimeGhc)
 import Polysemy.Time.Measure (measure)
 
 test_measure :: UnitTest

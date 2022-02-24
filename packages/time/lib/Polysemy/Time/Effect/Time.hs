@@ -1,7 +1,7 @@
 {-# options_haddock prune #-}
 
 -- |Time effect, Internal
-module Polysemy.Time.Data.Time where
+module Polysemy.Time.Effect.Time where
 
 import Polysemy.Time.Data.TimeUnit (AddTimeUnit, TimeUnit)
 

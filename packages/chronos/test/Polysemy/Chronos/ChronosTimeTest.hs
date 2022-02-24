@@ -3,11 +3,11 @@ module Polysemy.Chronos.ChronosTimeTest where
 import qualified Chronos as Chronos
 import Polysemy.Test (UnitTest, assert, assertEq, runTestAuto)
 import Polysemy.Time.Calendar (year)
-import qualified Polysemy.Time.Data.Time as Time
 import Polysemy.Time.Data.TimeUnit (Seconds (Seconds))
+import qualified Polysemy.Time.Effect.Time as Time
 
 import Polysemy.Chronos (interpretTimeChronos)
-import Polysemy.Chronos.Time (interpretTimeChronosAt)
+import Polysemy.Chronos.Interpreter.Time (interpretTimeChronosAt)
 
 test_chronosTime :: UnitTest
 test_chronosTime =

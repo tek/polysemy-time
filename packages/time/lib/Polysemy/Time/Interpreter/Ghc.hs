@@ -1,15 +1,15 @@
 {-# options_haddock prune #-}
 
 -- |'Time' interpreters for the data types from "Data.Time", Internal
-module Polysemy.Time.Ghc where
+module Polysemy.Time.Interpreter.Ghc where
 
 import Control.Concurrent (threadDelay)
 import Data.Time (Day, NominalDiffTime, UTCTime, utctDay)
 import Data.Time.Clock.System (getSystemTime, systemToUTCTime)
 
 import Polysemy.Time.At (interceptTimeAt, interceptTimeConstant, interceptTimeConstantNow)
-import qualified Polysemy.Time.Data.Time as Time
-import Polysemy.Time.Data.Time (Time)
+import qualified Polysemy.Time.Effect.Time as Time
+import Polysemy.Time.Effect.Time (Time)
 import Polysemy.Time.Data.TimeUnit (MicroSeconds (MicroSeconds), convert)
 import Polysemy.Time.Orphans ()
 

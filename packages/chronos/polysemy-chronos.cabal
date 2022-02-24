@@ -22,8 +22,8 @@ extra-source-files:
 library
   exposed-modules:
       Polysemy.Chronos
+      Polysemy.Chronos.Interpreter.Time
       Polysemy.Chronos.Orphans
-      Polysemy.Chronos.Time
   hs-source-dirs:
       lib
   default-extensions:

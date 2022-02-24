@@ -1,4 +1,4 @@
-{-# options_haddock prune, hide #-}
+{-# options_haddock prune #-}
 
 -- |Helpers for sleeping, Internal
 module Polysemy.Time.Sleep where

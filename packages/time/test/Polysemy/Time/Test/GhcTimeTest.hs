@@ -5,10 +5,10 @@ import Polysemy.Test (UnitTest, assert, assertEq, runTestAuto)
 import Polysemy.Test.Data.Hedgehog (Hedgehog)
 
 import Polysemy.Time.Calendar (mkDatetime, year)
-import qualified Polysemy.Time.Data.Time as Time
-import Polysemy.Time.Data.Time (Time)
+import qualified Polysemy.Time.Effect.Time as Time
+import Polysemy.Time.Effect.Time (Time)
 import Polysemy.Time.Data.TimeUnit (Days (Days), Seconds (Seconds))
-import Polysemy.Time.Ghc (interpretTimeGhc, interpretTimeGhcAt)
+import Polysemy.Time.Interpreter.Ghc (interpretTimeGhc, interpretTimeGhcAt)
 
 prog ::
   ∀ t d r .

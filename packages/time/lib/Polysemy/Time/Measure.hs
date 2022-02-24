@@ -4,10 +4,10 @@ module Polysemy.Time.Measure where
 import Torsor (Torsor)
 
 import Polysemy.Time.Class.Instant (Instant)
-import qualified Polysemy.Time.Data.Time as Time
-import Polysemy.Time.Data.Time (Time)
 import Polysemy.Time.Data.TimeUnit (TimeUnit)
 import Polysemy.Time.Diff (diff)
+import qualified Polysemy.Time.Effect.Time as Time
+import Polysemy.Time.Effect.Time (Time)
 
 -- |Run the action @ma@ and measure the time it takes.
 --

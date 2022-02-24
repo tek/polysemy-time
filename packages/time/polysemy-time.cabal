@@ -25,10 +25,10 @@ library
       Polysemy.Time.At
       Polysemy.Time.Calendar
       Polysemy.Time.Class.Instant
-      Polysemy.Time.Data.Time
       Polysemy.Time.Data.TimeUnit
       Polysemy.Time.Diff
-      Polysemy.Time.Ghc
+      Polysemy.Time.Effect.Time
+      Polysemy.Time.Interpreter.Ghc
       Polysemy.Time.Json
       Polysemy.Time.Loop
       Polysemy.Time.Measure

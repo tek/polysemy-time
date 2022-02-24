@@ -1,8 +1,8 @@
 -- |Combinators for looping with a sleep interval, Internal
 module Polysemy.Time.Loop where
 
-import qualified Polysemy.Time.Data.Time as Time
-import Polysemy.Time.Data.Time (Time)
+import qualified Polysemy.Time.Effect.Time as Time
+import Polysemy.Time.Effect.Time (Time)
 import Polysemy.Time.Data.TimeUnit (TimeUnit)
 
 -- |Repeatedly run the @action@, sleeping for @interval@ between executions.

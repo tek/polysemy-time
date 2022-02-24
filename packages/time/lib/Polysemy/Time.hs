@@ -5,7 +5,7 @@ data types and classes.
 module Polysemy.Time (
   -- $intro
   -- * Time effect
-  module Polysemy.Time.Data.Time,
+  module Polysemy.Time.Effect.Time,
   GhcTime,
 
   -- * Interpreters
@@ -43,7 +43,6 @@ import Polysemy.Time.Calendar (
   HasSecond (..),
   HasYear (..),
   )
-import Polysemy.Time.Data.Time (Time (..), adjust, now, setDate, setTime, sleep, today)
 import Polysemy.Time.Data.TimeUnit (
   Days (..),
   Hours (..),
@@ -59,7 +58,8 @@ import Polysemy.Time.Data.TimeUnit (
   convert,
   )
 import Polysemy.Time.Diff (diff)
-import Polysemy.Time.Ghc (
+import Polysemy.Time.Effect.Time (Time (..), adjust, now, setDate, setTime, sleep, today)
+import Polysemy.Time.Interpreter.Ghc (
   GhcTime,
   interpretTimeGhc,
   interpretTimeGhcAt,
