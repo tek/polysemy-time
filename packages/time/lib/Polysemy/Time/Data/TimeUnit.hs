@@ -1,13 +1,10 @@
+{-# options_haddock prune #-}
+
 -- |TimeUnit Class and Data Types, Internal
 module Polysemy.Time.Data.TimeUnit where
 
-import Data.Fixed (div')
-import Data.Time (
-  DiffTime,
-  NominalDiffTime,
-  diffTimeToPicoseconds,
-  picosecondsToDiffTime,
-  )
+import Data.Time (DiffTime, NominalDiffTime, diffTimeToPicoseconds, picosecondsToDiffTime)
+import qualified GHC.Real as Real
 import Torsor (Additive, Scaling, Torsor, add, scale)
 
 import Polysemy.Time.Json (json)
@@ -22,7 +19,7 @@ instance (Integral a, TimeUnit a) => Fractional (FromSeconds a) where
   fromRational secs =
     FromSeconds (convert (NanoSeconds (round (1e9 * secs))))
   FromSeconds a / FromSeconds b =
-    FromSeconds (a `div` b)
+    FromSeconds (a `Real.div` b)
 
 -- |Types that represent an amount of time that can be converted to each other.
 -- The methods are internal, the API function is 'convert'.
@@ -37,7 +34,7 @@ class TimeUnit u where
   fromNanos :: NanoSeconds -> u
   default fromNanos :: Integral u => NanoSeconds -> u
   fromNanos n =
-    fromIntegral (n `div` (nanos @u))
+    fromIntegral (n `Real.div` (nanos @u))
 
 -- * Data types used to specify time spans, e.g. for sleeping.
 
@@ -145,18 +142,6 @@ instance TimeUnit NanoSeconds where
   fromNanos =
     id
 
-safeDiv ::
-  Real a =>
-  Integral a =>
-  a ->
-  a ->
-  Maybe a
-safeDiv _ 0 =
-  Nothing
-safeDiv n d =
-  Just (n `div'` d)
-{-# inline safeDiv #-}
-
 divOr0 ::
   Real a =>
   Integral a =>
@@ -164,7 +149,7 @@ divOr0 ::
   a ->
   a
 divOr0 l r =
-  fromMaybe 0 (safeDiv l r)
+  fromMaybe 0 (div' l r)
 {-# inline divOr0 #-}
 
 instance TimeUnit DiffTime where
