@@ -8,7 +8,7 @@ library:
   source-dirs: lib
   dependencies:
     - aeson >= 1.4
-    - incipit-core >= 0.1
+    - incipit-core >= 0.2
     - stm
     - template-haskell
     - time

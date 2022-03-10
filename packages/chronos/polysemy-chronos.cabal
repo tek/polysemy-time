@@ -88,7 +88,7 @@ library
   build-depends:
       base ==4.*
     , chronos >=1.1.1 && <1.2
-    , incipit-core >=0.1
+    , incipit-core >=0.2
     , polysemy-time
   mixins:
       base hiding (Prelude)

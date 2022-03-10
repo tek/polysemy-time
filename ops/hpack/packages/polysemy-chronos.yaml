@@ -8,7 +8,7 @@ library:
   source-dirs: lib
   dependencies:
     - chronos ^>= 1.1.1
-    - incipit-core >= 0.1
+    - incipit-core >= 0.2
     - polysemy-time
   when:
     condition: false
