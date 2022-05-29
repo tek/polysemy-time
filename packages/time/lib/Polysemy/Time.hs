@@ -31,6 +31,7 @@ module Polysemy.Time (
   loop,
   loop_,
   diff,
+  since,
 ) where
 
 import Polysemy.Time.Calendar (
@@ -57,7 +58,7 @@ import Polysemy.Time.Data.TimeUnit (
   Years (..),
   convert,
   )
-import Polysemy.Time.Diff (diff)
+import Polysemy.Time.Diff (diff, since)
 import Polysemy.Time.Effect.Time (Time (..), adjust, now, setDate, setTime, sleep, today)
 import Polysemy.Time.Interpreter.Ghc (
   GhcTime,

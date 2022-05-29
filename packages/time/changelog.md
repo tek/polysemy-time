@@ -1,6 +1,7 @@
 # Unreleased
 * Change the behaviour of `interceptTimeConstantState` so that sleeping polls the current time until it has been
   adjusted further than the sleep duration.
+* Add `since`, a convenience combinator that diffs the current time against a reference instant.
 
 # 0.1.4.0
 * Add `secondsFrac`, a combinator that converts a unit into a fractional number of seconds.
