@@ -1,14 +1,17 @@
 module Polysemy.Time.Test.GhcTimeTest where
 
+import Control.Concurrent.STM (newTVarIO)
 import Data.Time (Day, UTCTime)
-import Polysemy.Test (UnitTest, assert, assertEq, runTestAuto)
+import Polysemy.Test (UnitTest, assert, assertEq, assertJust, runTestAuto, unitTest)
 import Polysemy.Test.Data.Hedgehog (Hedgehog)
+import Test.Tasty (testGroup)
+import Test.Tasty.Providers (TestTree)
 
 import Polysemy.Time.Calendar (mkDatetime, year)
+import Polysemy.Time.Data.TimeUnit (Days (Days), Hours (Hours), Minutes (Minutes), Seconds (Seconds))
 import qualified Polysemy.Time.Effect.Time as Time
 import Polysemy.Time.Effect.Time (Time)
-import Polysemy.Time.Data.TimeUnit (Days (Days), Seconds (Seconds))
-import Polysemy.Time.Interpreter.Ghc (interpretTimeGhc, interpretTimeGhcAt)
+import Polysemy.Time.Interpreter.Ghc (interpretTimeGhc, interpretTimeGhcAt, interpretTimeGhcConstant)
 
 prog ::
   ∀ t d r .
@@ -20,8 +23,8 @@ prog = do
   time2 <- Time.now @t @d
   assert @IO (time1 < time2)
 
-test_ghcTime :: UnitTest
-test_ghcTime =
+test_ghcTimeNow :: UnitTest
+test_ghcTimeNow =
   runTestAuto do
     interpretTimeGhc (prog @UTCTime @Day)
 
@@ -39,3 +42,26 @@ test_ghcTimeAt =
       Time.adjust @UTCTime @Day (Days 366)
       time1 <- Time.now @UTCTime @Day
       assertEq @_ @IO 1847 (year time1)
+
+test_ghcTimeConstant :: UnitTest
+test_ghcTimeConstant =
+  runTestAuto $ asyncToIOFinal do
+    tv <- embed @IO (newTVarIO @Int 0)
+    runAtomicStateTVar tv do
+      interpretTimeGhcConstant testTime do
+        handle <- async do
+          Time.sleep @UTCTime @Day (Hours 1)
+          atomicPut @Int 1
+        Time.adjust @UTCTime @Day (Minutes 1)
+        assertEq @Int @IO 0 =<< atomicGet
+        Time.adjust @UTCTime @Day (Minutes 59)
+        assertJust @_ @IO () =<< await handle
+        assertEq @Int @IO 1 =<< atomicGet
+
+test_ghcTime :: TestTree
+test_ghcTime =
+  testGroup "ghc time" [
+    unitTest "now monotony" test_ghcTimeNow,
+    unitTest "start at instant" test_ghcTimeAt,
+    unitTest "constant at instant" test_ghcTimeConstant
+  ]

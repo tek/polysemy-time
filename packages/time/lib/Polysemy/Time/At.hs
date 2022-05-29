@@ -5,7 +5,7 @@ import Control.Concurrent.STM (newTVarIO)
 import Torsor (Torsor (add), difference)
 
 import Polysemy.Time.Calendar (HasDate, date, dateToTime)
-import Polysemy.Time.Data.TimeUnit (TimeUnit, addTimeUnit)
+import Polysemy.Time.Data.TimeUnit (MilliSeconds (MilliSeconds), TimeUnit, addTimeUnit, convert)
 import qualified Polysemy.Time.Effect.Time as Time
 import Polysemy.Time.Effect.Time (Time)
 
@@ -43,7 +43,7 @@ interceptTimeAtWithStart =
       startActual <- Time.now @t @d
       atomicPut @(t, t) (startAt, startActual)
     Time.Adjust diff -> do
-      atomicModify' @(t, t) \ (old, actual) -> (addTimeUnit diff old, actual)
+      atomicModify' @(t, t) (first (addTimeUnit diff))
     Time.SetDate startAt -> do
       startActual <- Time.now @t @d
       atomicPut @(t, t) (dateToTime startAt, startActual)
@@ -65,11 +65,35 @@ interceptTimeAt startAt sem = do
   runAtomicStateTVar tv . interceptTimeAtWithStart @diff @t @d . raise $ sem
 {-# inline interceptTimeAt #-}
 
+sleepPoll ::
+  ∀ t d diff u r .
+  Ord diff =>
+  TimeUnit u =>
+  TimeUnit diff =>
+  Torsor t diff =>
+  Members [Time t d, AtomicState t] r =>
+  u ->
+  t ->
+  Sem r ()
+sleepPoll duration start =
+  spin
+  where
+    spin = do
+      Time.sleep @t @d (MilliSeconds 10)
+      unlessM (later <$> atomicGet @t) spin
+    later now =
+      difference now start >= diff
+    diff =
+      convert @u @diff duration
+
 -- |Change all calls to 'Time.Now' and 'Time.Today' to return the given start time.
 -- This needs to be interpreted with a vanilla interpreter for 'Time' once more.
 interceptTimeConstantState ::
-  ∀ t d r a .
+  ∀ t d diff r a .
+  Ord diff =>
   HasDate t d =>
+  TimeUnit diff =>
+  Torsor t diff =>
   Members [Time t d, AtomicState t] r =>
   Sem r a ->
   Sem r a
@@ -80,7 +104,7 @@ interceptTimeConstantState =
     Time.Today ->
       atomicGets @t date
     Time.Sleep t ->
-      Time.sleep @t @d t
+      sleepPoll @t @d t =<< atomicGet
     Time.SetTime now ->
       atomicPut now
     Time.Adjust diff ->
@@ -92,9 +116,13 @@ interceptTimeConstantState =
 -- |Interpret 'Time' so that the time is always @startAt@.
 --
 -- The time can still be changed with 'Time.setTime', 'Time.adjust' and 'Time.setDate'.
+-- Sleeping will only terminate after the time has been advanced by `Time.adjust`.
 interceptTimeConstant ::
-  ∀ t d r a .
+  ∀ t d diff r a .
+  Ord diff =>
   HasDate t d =>
+  TimeUnit diff =>
+  Torsor t diff =>
   Members [Time t d, Embed IO] r =>
   t ->
   Sem r a ->
@@ -107,9 +135,13 @@ interceptTimeConstant startAt sem = do
 -- |Interpret 'Time' so that the time is always the time at the start of interpretation.
 --
 -- The time can still be changed with 'Time.setTime', 'Time.adjust' and 'Time.setDate'.
+-- Sleeping will only terminate after the time has been advanced by `Time.adjust`.
 interceptTimeConstantNow ::
-  ∀ t d r a .
+  ∀ t d diff r a .
+  Ord diff =>
   HasDate t d =>
+  TimeUnit diff =>
+  Torsor t diff =>
   Members [Time t d, Embed IO] r =>
   Sem r a ->
   Sem r a

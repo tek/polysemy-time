@@ -8,9 +8,9 @@ import Data.Time (Day, NominalDiffTime, UTCTime, utctDay)
 import Data.Time.Clock.System (getSystemTime, systemToUTCTime)
 
 import Polysemy.Time.At (interceptTimeAt, interceptTimeConstant, interceptTimeConstantNow)
+import Polysemy.Time.Data.TimeUnit (MicroSeconds (MicroSeconds), convert)
 import qualified Polysemy.Time.Effect.Time as Time
 import Polysemy.Time.Effect.Time (Time)
-import Polysemy.Time.Data.TimeUnit (MicroSeconds (MicroSeconds), convert)
 import Polysemy.Time.Orphans ()
 
 -- |Convenience alias for 'Data.Time'.
@@ -51,6 +51,7 @@ interpretTimeGhcAt t =
   interpretTimeGhc . interceptTimeAt @NominalDiffTime t
 
 -- |Interpret 'Time' with the types from 'Data.Time', customizing the current time to be constant.
+-- Sleeping will only terminate after the time has been advanced by `Time.adjust`.
 interpretTimeGhcConstant ::
   Member (Embed IO) r =>
   UTCTime ->
@@ -60,6 +61,7 @@ interpretTimeGhcConstant t =
 
 -- |Interpret 'Time' with the types from 'Data.Time', customizing the current time to be constantly the time at the
 -- start of interpretation.
+-- Sleeping will only terminate after the time has been advanced by `Time.adjust`.
 interpretTimeGhcConstantNow ::
   Member (Embed IO) r =>
   InterpreterFor GhcTime r
