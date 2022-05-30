@@ -1,17 +1,17 @@
 module Polysemy.Time.Test.GhcTimeTest where
 
-import Control.Concurrent.STM (newTVarIO)
 import Data.Time (Day, UTCTime)
 import Polysemy.Test (UnitTest, assert, assertEq, assertJust, runTestAuto, unitTest)
 import Polysemy.Test.Data.Hedgehog (Hedgehog)
 import Test.Tasty (testGroup)
 import Test.Tasty.Providers (TestTree)
 
+import Polysemy.Time.At (interceptTimeConstant)
 import Polysemy.Time.Calendar (mkDatetime, year)
-import Polysemy.Time.Data.TimeUnit (Days (Days), Hours (Hours), Minutes (Minutes), Seconds (Seconds))
+import Polysemy.Time.Data.TimeUnit (Days (Days), Hours (Hours), Seconds (Seconds))
 import qualified Polysemy.Time.Effect.Time as Time
 import Polysemy.Time.Effect.Time (Time)
-import Polysemy.Time.Interpreter.Ghc (interpretTimeGhc, interpretTimeGhcAt, interpretTimeGhcConstant)
+import Polysemy.Time.Interpreter.Ghc (GhcTime, interpretTimeGhc, interpretTimeGhcAt)
 
 prog ::
   ∀ t d r .
@@ -43,20 +43,29 @@ test_ghcTimeAt =
       time1 <- Time.now @UTCTime @Day
       assertEq @_ @IO 1847 (year time1)
 
+interceptSignal ::
+  Members [GhcTime, Embed IO] r =>
+  MVar () ->
+  Sem r a ->
+  Sem r a
+interceptSignal signal =
+  intercept @GhcTime \case
+    Time.Sleep t -> do
+      embed (putMVar signal ())
+      Time.sleep @UTCTime @Day t
+    e ->
+      send @GhcTime (coerce e)
+
 test_ghcTimeConstant :: UnitTest
 test_ghcTimeConstant =
-  runTestAuto $ asyncToIOFinal do
-    tv <- embed @IO (newTVarIO @Int 0)
-    runAtomicStateTVar tv do
-      interpretTimeGhcConstant testTime do
-        handle <- async do
-          Time.sleep @UTCTime @Day (Hours 1)
-          atomicPut @Int 1
-        Time.adjust @UTCTime @Day (Minutes 1)
-        assertEq @Int @IO 0 =<< atomicGet
-        Time.adjust @UTCTime @Day (Minutes 59)
-        assertJust @_ @IO () =<< await handle
-        assertEq @Int @IO 1 =<< atomicGet
+  runTestAuto $ asyncToIOFinal $ interpretTimeGhc do
+    signal <- embed newEmptyMVar
+    interceptSignal signal $ interceptTimeConstant testTime do
+      handle <- async do
+        Time.sleep @UTCTime @Day (Hours 1)
+      embed (takeMVar signal)
+      Time.adjust @UTCTime @Day (Hours 1)
+      assertJust @_ @IO () =<< await handle
 
 test_ghcTime :: TestTree
 test_ghcTime =
