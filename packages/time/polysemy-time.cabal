@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-time
-version:        0.4.0.0
+version:        0.5.0.0
 synopsis:       Polysemy effects for time
 description:    See https://hackage.haskell.org/package/polysemy-time/docs/Polysemy-Time.html
 category:       Time
@@ -103,7 +103,7 @@ library
   build-depends:
       aeson >=1.4
     , base >=4.12 && <5
-    , incipit-core >=0.2
+    , incipit-core >=0.3
     , stm
     , template-haskell
     , time
@@ -186,8 +186,8 @@ test-suite polysemy-time-unit
   ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.12 && <5
-    , incipit-core >=0.2
-    , polysemy-test
+    , incipit-core >=0.3
+    , polysemy-test >=0.6
     , polysemy-time
     , tasty
     , time

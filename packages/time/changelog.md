@@ -1,4 +1,6 @@
 # Unreleased
+
+# 0.5.0.0
 * Change the behaviour of `interceptTimeConstantState` so that sleeping polls the current time until it has been
   adjusted further than the sleep duration.
 * Add `since`, a convenience combinator that diffs the current time against a reference instant.
