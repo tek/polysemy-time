@@ -6,18 +6,21 @@ cabal-version: 2.2
 
 name:           polysemy-chronos
 version:        0.4.0.0
-synopsis:       Polysemy-time Interpreters for Chronos
-description:    Please see the readme on Github at <https://github.com/tek/polysemy-time>
+synopsis:       Polysemy effects for Chronos
+description:    See https://hackage.haskell.org/package/polysemy-chronos/docs/Polysemy-Chronos.html
 category:       Time
+homepage:       https://github.com/tek/polysemy-time#readme
+bug-reports:    https://github.com/tek/polysemy-time/issues
 author:         Torsten Schmits
-maintainer:     tek@tryp.io
-copyright:      2021 Torsten Schmits
+maintainer:     hackage@tryp.io
+copyright:      2022 Torsten Schmits
 license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple
-extra-source-files:
-    readme.md
-    changelog.md
+
+source-repository head
+  type: git
+  location: https://github.com/tek/polysemy-time
 
 library
   exposed-modules:
@@ -40,6 +43,7 @@ library
       DeriveFoldable
       DeriveFunctor
       DeriveGeneric
+      DeriveLift
       DeriveTraversable
       DerivingStrategies
       DerivingVia
@@ -72,6 +76,7 @@ library
       RankNTypes
       RecordWildCards
       RecursiveDo
+      RoleAnnotations
       ScopedTypeVariables
       StandaloneDeriving
       TemplateHaskell
@@ -84,14 +89,16 @@ library
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -Wunused-packages
+  ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages
   build-depends:
-      base ==4.*
+      base >=4.12 && <5
     , chronos >=1.1.1 && <1.2
     , incipit-core >=0.2
     , polysemy-time
   mixins:
       base hiding (Prelude)
+    , incipit-core (IncipitCore as Prelude)
+    , incipit-core hiding (IncipitCore)
   default-language: Haskell2010
 
 test-suite polysemy-chronos-unit
@@ -115,6 +122,7 @@ test-suite polysemy-chronos-unit
       DeriveFoldable
       DeriveFunctor
       DeriveGeneric
+      DeriveLift
       DeriveTraversable
       DerivingStrategies
       DerivingVia
@@ -147,6 +155,7 @@ test-suite polysemy-chronos-unit
       RankNTypes
       RecordWildCards
       RecursiveDo
+      RoleAnnotations
       ScopedTypeVariables
       StandaloneDeriving
       TemplateHaskell
@@ -159,15 +168,17 @@ test-suite polysemy-chronos-unit
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base ==4.*
+      base >=4.12 && <5
     , chronos
-    , incipit-core
+    , incipit-core >=0.2
     , polysemy-chronos
     , polysemy-test
     , polysemy-time
     , tasty
   mixins:
       base hiding (Prelude)
+    , incipit-core (IncipitCore as Prelude)
+    , incipit-core hiding (IncipitCore)
   default-language: Haskell2010

@@ -12,7 +12,7 @@ import Polysemy.Time.Json (json)
 -- |For deriving via.
 newtype FromSeconds a =
   FromSeconds a
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
   deriving newtype (Num)
 
 instance (Integral a, TimeUnit a) => Fractional (FromSeconds a) where
@@ -41,19 +41,19 @@ class TimeUnit u where
 -- |Years.
 newtype Years =
   Years { unYear :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
 
 -- |Months.
 newtype Months =
   Months { unMonths :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
 
 -- |Weeks.
 newtype Weeks =
   Weeks { unWeeks :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
 
 instance TimeUnit Weeks where
@@ -63,7 +63,7 @@ instance TimeUnit Weeks where
 -- |Days.
 newtype Days =
   Days { unDays :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
 
 instance TimeUnit Days where
@@ -73,7 +73,7 @@ instance TimeUnit Days where
 -- |Hours.
 newtype Hours =
   Hours { unHours :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
 
 instance TimeUnit Hours where
@@ -83,7 +83,7 @@ instance TimeUnit Hours where
 -- |Minutes.
 newtype Minutes =
   Minutes { unMinutes :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
 
 instance TimeUnit Minutes where
@@ -93,7 +93,7 @@ instance TimeUnit Minutes where
 -- |Seconds.
 newtype Seconds =
   Seconds { unSeconds :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
 
 instance TimeUnit Seconds where
@@ -103,7 +103,7 @@ instance TimeUnit Seconds where
 -- |Milliseconds.
 newtype MilliSeconds =
   MilliSeconds { unMilliSeconds :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
   deriving (Fractional) via (FromSeconds MilliSeconds)
 
@@ -114,7 +114,7 @@ instance TimeUnit MilliSeconds where
 -- |Microseconds.
 newtype MicroSeconds =
   MicroSeconds { unMicroSeconds :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
   deriving (Fractional) via (FromSeconds MicroSeconds)
 
@@ -126,7 +126,7 @@ instance TimeUnit MicroSeconds where
 -- This is the base unit for all conversions.
 newtype NanoSeconds =
   NanoSeconds { unNanoSeconds :: Int64 }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Real, Enum, Integral, Ord, Additive)
   deriving (Fractional) via (FromSeconds NanoSeconds)
 
@@ -203,7 +203,7 @@ secondsFrac ::
   u ->
   Double
 secondsFrac u =
-  fromIntegral (unNanoSeconds (convert u)) / 1e9
+  fromMaybe 0 (fromIntegral (unNanoSeconds (convert u)) / 1e9)
 
 json ''Years
 json ''Months
