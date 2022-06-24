@@ -28,6 +28,7 @@ module Polysemy.Time (
   -- * Combinators
   measure,
   while,
+  untilJust,
   loop,
   loop_,
   diff,
@@ -67,7 +68,7 @@ import Polysemy.Time.Interpreter.Ghc (
   interpretTimeGhcConstant,
   interpretTimeGhcConstantNow,
   )
-import Polysemy.Time.Loop (loop, loop_, while)
+import Polysemy.Time.Loop (loop, loop_, while, untilJust)
 import Polysemy.Time.Measure (measure)
 import Polysemy.Time.Orphans ()
 

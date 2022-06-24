@@ -1,5 +1,7 @@
 # Unreleased
 
+* Add `untilJust`, a combinator that repeatedly executes an action until it returns `Just`, sleeping in between.
+
 # 0.5.0.0
 * Change the behaviour of `interceptTimeConstantState` so that sleeping polls the current time until it has been
   adjusted further than the sleep duration.

@@ -1,9 +1,26 @@
 -- |Combinators for looping with a sleep interval, Internal
 module Polysemy.Time.Loop where
 
+import Polysemy.Time.Data.TimeUnit (TimeUnit)
 import qualified Polysemy.Time.Effect.Time as Time
 import Polysemy.Time.Effect.Time (Time)
-import Polysemy.Time.Data.TimeUnit (TimeUnit)
+
+-- |Repeatedly run the @action@, sleeping for @interval@ between executions.
+-- Stops when @action@ returns @Just a@, returning the contained @a@.
+untilJust ::
+  ∀ t d u r a .
+  Member (Time t d) r =>
+  TimeUnit u =>
+  u ->
+  Sem r (Maybe a) ->
+  Sem r a
+untilJust interval action =
+  spin
+  where
+    spin =
+      action >>= \case
+        Just a -> pure a
+        Nothing -> Time.sleep @t @d interval *> spin
 
 -- |Repeatedly run the @action@, sleeping for @interval@ between executions.
 -- Stops when @action@ returns @False@.
