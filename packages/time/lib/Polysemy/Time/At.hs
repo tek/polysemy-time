@@ -1,3 +1,5 @@
+{-# options_haddock prune #-}
+
 -- |Interceptors for fixing a specific time, Internal
 module Polysemy.Time.At where
 

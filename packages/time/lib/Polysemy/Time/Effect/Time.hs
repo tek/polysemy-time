@@ -16,7 +16,7 @@ data Time (time :: Type) (date :: Type) :: Effect where
   -- |Set the current time, if the interpreter supports it.
   SetTime :: t -> Time t d m ()
   -- |Adjust the current time relatively, if the interpreter supports it.
-  Adjust :: AddTimeUnit t u1 u2 => u1 -> Time t d m ()
+  Adjust :: TimeUnit u1 => u1 -> Time t d m ()
   -- |Set the current date, if the interpreter supports it.
   SetDate :: d -> Time t d m ()
 
