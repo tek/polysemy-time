@@ -1,15 +1,12 @@
 {
   description = "Polysemy Effect for Time";
 
-  inputs = {
-    hix.url = github:tek/hix;
-    bytesmith = { url = github:tek/bytesmith/tek/ghc-9.2; flake = false; };
-  };
+  inputs.hix.url = github:tek/hix;
 
-  outputs = { hix, bytesmith, ...}:
+  outputs = { hix, ...}:
   let
-    ghc922 = { source, jailbreak, notest, ... }: {
-      bytesmith = source.root bytesmith;
+    ghc924 = { hackage, jailbreak, notest, ... }: {
+      bytesmith = jailbreak (hackage "0.3.9.0" "0ds4dppdf42pm37lr4xm7cglmgyj104nnbm83ldwblixzp3inwc1");
       chronos = jailbreak;
       type-errors = notest;
     };
@@ -25,7 +22,7 @@
   hix.lib.flake ({ config, lib, ... }: {
     base = ./.;
     main = "polysemy-chronos";
-    overrides = { inherit all ghc922; };
+    overrides = { inherit all ghc924; };
     packages = {
       polysemy-time = ./packages/time;
       polysemy-chronos = ./packages/chronos;

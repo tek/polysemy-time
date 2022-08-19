@@ -1,22 +1,5 @@
 {
   "nodes": {
-    "bytesmith": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650744662,
-        "narHash": "sha256-iz0iQXPngZeH22XmsqXFCEzZvnR9UDkmPc6FAy7ZTOc=",
-        "owner": "tek",
-        "repo": "bytesmith",
-        "rev": "9237825bf757cc9d46365a341bb51004b68f84a0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tek",
-        "ref": "tek/ghc-9.2",
-        "repo": "bytesmith",
-        "type": "github"
-      }
-    },
     "easy-hls": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -66,11 +49,11 @@
         "thax": "thax"
       },
       "locked": {
-        "lastModified": 1654280324,
-        "narHash": "sha256-qG+P2HxL1T8PUP1/aPqRtE1fobo8FZIpwjT9/tXAW3U=",
+        "lastModified": 1658021306,
+        "narHash": "sha256-chR2NPBuJgI/aaN5IdH83DabILJQ8AEfjRsDlhkEQiM=",
         "owner": "tek",
         "repo": "hix",
-        "rev": "6b0625c7744e57293f781ff574ea909943898008",
+        "rev": "bedd71655b5fe8af681d28f197dff483edfc2f19",
         "type": "github"
       },
       "original": {
@@ -241,7 +224,6 @@
     },
     "root": {
       "inputs": {
-        "bytesmith": "bytesmith",
         "hix": "hix"
       }
     },
