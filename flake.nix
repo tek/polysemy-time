@@ -1,7 +1,7 @@
 {
   description = "Polysemy Effect for Time";
 
-  inputs.hix.url = github:tek/hix;
+  inputs.hix.url = git+https://git.tryp.io/tek/hix;
 
   outputs = { hix, ...}:
   let
