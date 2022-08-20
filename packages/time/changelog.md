@@ -1,5 +1,7 @@
 # Unreleased
 
+# 0.5.1.0
+
 * Add `untilJust`, a combinator that repeatedly executes an action until it returns `Just`, sleeping in between.
 
 # 0.5.0.0
