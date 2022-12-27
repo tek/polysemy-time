@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.34.7.
+-- This file has been generated from package.yaml by hpack version 0.35.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -98,7 +98,7 @@ library
   build-depends:
       base >=4.12 && <5
     , chronos >=1.1.1 && <1.2
-    , incipit-core >=0.3
+    , incipit-core >=0.4
     , polysemy-time
   mixins:
       base hiding (Prelude)
@@ -179,7 +179,7 @@ test-suite polysemy-chronos-unit
   build-depends:
       base >=4.12 && <5
     , chronos
-    , incipit-core >=0.3
+    , incipit-core >=0.4
     , polysemy-chronos
     , polysemy-test >=0.6
     , polysemy-time

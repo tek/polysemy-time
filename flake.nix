@@ -2,31 +2,37 @@
   description = "Polysemy Effect for Time";
 
   inputs.hix.url = git+https://git.tryp.io/tek/hix;
+  inputs.bytesmith = {
+    url = github:byteverse/bytesmith/release-0-3-9-1;
+    flake = false;
+  };
 
-  outputs = { hix, ...}:
+  outputs = { hix, bytesmith, ...}:
   let
-    ghc924 = { hackage, jailbreak, notest, ... }: {
-      bytesmith = jailbreak (hackage "0.3.9.0" "0ds4dppdf42pm37lr4xm7cglmgyj104nnbm83ldwblixzp3inwc1");
-      chronos = jailbreak;
-      type-errors = notest;
+
+    ghc943 = { hackage, source, ... }: {
+      bytesmith = source.root bytesmith;
     };
 
     all = { hackage, ... }: {
-      incipit-base = hackage "0.3.0.0" "1078yyl5k94c9pr16rqd1i1g1fj8zx4iswhk7rcxb8f10fjqzapg";
-      incipit-core = hackage "0.3.0.0" "0q11zmxlpdb72p8c8zvr5hd7qca9c37crm70lm16jxlzw1qxk51b";
-      polysemy-test = hackage "0.6.0.0" "07pi549ral22sxhja67k5b9v787q0b32ysp0bq9szhwjqgxsab46";
-      polysemy = hackage "1.6.0.0" "15k51ysrfcbkww1562g8zvrlzymlk2rxhcsz9ipsb0q6h571qgvf";
+      incipit-base = hackage "0.4.0.0" "0g04mw1si70g5kkgz9gnk460d4pvm65i30hd9abrg6g0ryizixqf";
+      incipit-core = hackage "0.4.0.0" "168m94c1480y8lhin1sbrwzr14dq13ixkgkcl7ikq78vcq267521";
+    };
+
+    dev = { hackage, ... }: {
+      polysemy-test = hackage "0.7.0.0" "1m6ncbihr742765rshz6w7dn450f3d2ip6ci3qah27lnz7yrwmp6";
+      polysemy = hackage "1.8.0.0" "0jgaqmcf4l8h58g1y576rrr74sii60mymqxh3ii3clnxcllp3p01";
+      polysemy-plugin = hackage "0.4.3.1" "0kjwxal9m3lvri35vliwfwcgcj9fkp50ybv4kbgvsjj8srh0pyfj";
     };
 
   in
-  hix.lib.flake ({ config, lib, ... }: {
-    base = ./.;
-    main = "polysemy-chronos";
-    overrides = { inherit all ghc924; };
+  hix.lib.pro ({ config, lib, ... }: {
     packages = {
       polysemy-time = ./packages/time;
       polysemy-chronos = ./packages/chronos;
     };
+    main = "polysemy-chronos";
+    overrides = { inherit dev all ghc943; };
     hpack.packages = import ./ops/hpack.nix { inherit config lib; };
     hackage.versionFile = "ops/version.nix";
     ghci = {

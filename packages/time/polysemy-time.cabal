@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.34.7.
+-- This file has been generated from package.yaml by hpack version 0.35.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -108,8 +108,7 @@ library
   build-depends:
       aeson >=1.4
     , base >=4.12 && <5
-    , incipit-core >=0.3
-    , stm
+    , incipit-core >=0.4
     , template-haskell
     , time
     , torsor >=0.1
@@ -193,7 +192,7 @@ test-suite polysemy-time-unit
   ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.12 && <5
-    , incipit-core >=0.3
+    , incipit-core >=0.4
     , polysemy-test >=0.6
     , polysemy-time
     , tasty
