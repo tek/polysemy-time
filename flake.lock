@@ -1,22 +1,5 @@
 {
   "nodes": {
-    "bytesmith": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1670354070,
-        "narHash": "sha256-km/vJCFtQU1N+rjfEIkB/VH7JLiyjFjmq5k/3QpemBQ=",
-        "owner": "byteverse",
-        "repo": "bytesmith",
-        "rev": "d0d4db619ff1a336113a6b5842111c0bed7f4686",
-        "type": "github"
-      },
-      "original": {
-        "owner": "byteverse",
-        "ref": "release-0-3-9-1",
-        "repo": "bytesmith",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1667395993,
@@ -155,7 +138,6 @@
     },
     "root": {
       "inputs": {
-        "bytesmith": "bytesmith",
         "hix": "hix"
       }
     },

@@ -2,16 +2,12 @@
   description = "Polysemy Effect for Time";
 
   inputs.hix.url = git+https://git.tryp.io/tek/hix;
-  inputs.bytesmith = {
-    url = github:byteverse/bytesmith/release-0-3-9-1;
-    flake = false;
-  };
 
-  outputs = { hix, bytesmith, ...}:
+  outputs = { hix, ...}:
   let
 
     ghc943 = { hackage, source, ... }: {
-      bytesmith = source.root bytesmith;
+      bytesmith = hackage "0.3.9.1" "026p9mzdjl7yjs4lm5p0i2i1pkbz2m75cz0vkyvyw6k93qbcz9v4";
     };
 
     all = { hackage, ... }: {
