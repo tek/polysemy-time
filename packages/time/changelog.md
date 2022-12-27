@@ -1,5 +1,9 @@
 # Unreleased
 
+# 0.6.0.0
+
+* Support GHC 9.4.
+
 # 0.5.1.0
 
 * Add `untilJust`, a combinator that repeatedly executes an action until it returns `Just`, sleeping in between.

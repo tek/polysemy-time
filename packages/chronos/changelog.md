@@ -1,5 +1,9 @@
 # Unreleased
 
+# 0.6.0.0
+
+* Support GHC 9.4.
+
 # 0.2.0.2
 
 * Bugfix: Chronos treats months as zero-based, while `mkDate` uses 1-base.
