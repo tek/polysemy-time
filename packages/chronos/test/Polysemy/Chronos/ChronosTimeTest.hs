@@ -1,6 +1,6 @@
 module Polysemy.Chronos.ChronosTimeTest where
 
-import qualified Chronos as Chronos
+import qualified Chronos
 import Polysemy.Test (UnitTest, assert, assertEq, runTestAuto)
 import Polysemy.Time.Calendar (year)
 import Polysemy.Time.Data.TimeUnit (Seconds (Seconds))

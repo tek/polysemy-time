@@ -4,7 +4,7 @@
 -- |Orphans for "Chronos", Internal
 module Polysemy.Chronos.Orphans where
 
-import qualified Chronos as Chronos
+import qualified Chronos
 import Chronos (
   Date (Date),
   Datetime (Datetime),

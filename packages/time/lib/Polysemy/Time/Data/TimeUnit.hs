@@ -143,7 +143,6 @@ instance TimeUnit NanoSeconds where
     id
 
 divOr0 ::
-  Real a =>
   Integral a =>
   a ->
   a ->

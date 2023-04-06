@@ -3,7 +3,7 @@
 -- |Time interpreters for "Chronos", Internal
 module Polysemy.Chronos.Interpreter.Time where
 
-import qualified Chronos as Chronos
+import qualified Chronos
 import Chronos (Timespan (Timespan), dateToDay, dayToDate, dayToTimeMidnight, timeToDayTruncate)
 import Polysemy.Time.At (interceptTimeAt, interceptTimeConstant, interceptTimeConstantNow)
 import qualified Polysemy.Time.Effect.Time as Core

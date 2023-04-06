@@ -6,20 +6,20 @@ cabal-version: 2.2
 
 name:           polysemy-time
 version:        0.6.0.0
-synopsis:       Polysemy effects for time
+synopsis:       A Polysemy effect for time
 description:    See https://hackage.haskell.org/package/polysemy-time/docs/Polysemy-Time.html
 category:       Time
 homepage:       https://github.com/tek/polysemy-time#readme
 bug-reports:    https://github.com/tek/polysemy-time/issues
 author:         Torsten Schmits
 maintainer:     hackage@tryp.io
-copyright:      2022 Torsten Schmits
+copyright:      2023 Torsten Schmits
 license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
-    changelog.md
     readme.md
+    changelog.md
 
 source-repository head
   type: git
@@ -45,70 +45,70 @@ library
   default-extensions:
       AllowAmbiguousTypes
       ApplicativeDo
-      BangPatterns
-      BinaryLiterals
       BlockArguments
-      ConstraintKinds
       DataKinds
       DefaultSignatures
       DeriveAnyClass
+      DerivingStrategies
+      DerivingVia
+      DisambiguateRecordFields
+      DuplicateRecordFields
+      FunctionalDependencies
+      GADTs
+      LambdaCase
+      LiberalTypeSynonyms
+      MultiWayIf
+      OverloadedLabels
+      OverloadedLists
+      OverloadedStrings
+      PackageImports
+      PartialTypeSignatures
+      PatternSynonyms
+      QuantifiedConstraints
+      QuasiQuotes
+      RecordWildCards
+      RecursiveDo
+      RoleAnnotations
+      TemplateHaskell
+      TypeFamilies
+      TypeFamilyDependencies
+      UndecidableInstances
+      UnicodeSyntax
+      ViewPatterns
+      BangPatterns
+      BinaryLiterals
+      ConstraintKinds
       DeriveDataTypeable
       DeriveFoldable
       DeriveFunctor
       DeriveGeneric
       DeriveLift
       DeriveTraversable
-      DerivingStrategies
-      DerivingVia
-      DisambiguateRecordFields
       DoAndIfThenElse
-      DuplicateRecordFields
       EmptyCase
       EmptyDataDecls
       ExistentialQuantification
       FlexibleContexts
       FlexibleInstances
-      FunctionalDependencies
-      GADTs
       GeneralizedNewtypeDeriving
       InstanceSigs
       KindSignatures
-      LambdaCase
-      LiberalTypeSynonyms
       MultiParamTypeClasses
-      MultiWayIf
       NamedFieldPuns
-      OverloadedLabels
-      OverloadedLists
-      OverloadedStrings
-      PackageImports
-      PartialTypeSignatures
       PatternGuards
-      PatternSynonyms
       PolyKinds
-      QuantifiedConstraints
-      QuasiQuotes
       RankNTypes
-      RecordWildCards
-      RecursiveDo
-      RoleAnnotations
       ScopedTypeVariables
       StandaloneDeriving
-      TemplateHaskell
       TupleSections
       TypeApplications
-      TypeFamilies
-      TypeFamilyDependencies
       TypeOperators
       TypeSynonymInstances
-      UndecidableInstances
-      UnicodeSyntax
-      ViewPatterns
-  ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages
+  ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
       aeson >=1.4
-    , base >=4.12 && <5
-    , incipit-core >=0.4
+    , base ==4.*
+    , incipit-core >=0.4 && <0.6
     , template-haskell
     , time
     , torsor >=0.1
@@ -118,7 +118,7 @@ library
     , incipit-core hiding (IncipitCore)
   default-language: Haskell2010
 
-test-suite polysemy-time-unit
+test-suite polysemy-time-test
   type: exitcode-stdio-1.0
   main-is: Main.hs
   other-modules:
@@ -130,72 +130,72 @@ test-suite polysemy-time-unit
   default-extensions:
       AllowAmbiguousTypes
       ApplicativeDo
-      BangPatterns
-      BinaryLiterals
       BlockArguments
-      ConstraintKinds
       DataKinds
       DefaultSignatures
       DeriveAnyClass
+      DerivingStrategies
+      DerivingVia
+      DisambiguateRecordFields
+      DuplicateRecordFields
+      FunctionalDependencies
+      GADTs
+      LambdaCase
+      LiberalTypeSynonyms
+      MultiWayIf
+      OverloadedLabels
+      OverloadedLists
+      OverloadedStrings
+      PackageImports
+      PartialTypeSignatures
+      PatternSynonyms
+      QuantifiedConstraints
+      QuasiQuotes
+      RecordWildCards
+      RecursiveDo
+      RoleAnnotations
+      TemplateHaskell
+      TypeFamilies
+      TypeFamilyDependencies
+      UndecidableInstances
+      UnicodeSyntax
+      ViewPatterns
+      BangPatterns
+      BinaryLiterals
+      ConstraintKinds
       DeriveDataTypeable
       DeriveFoldable
       DeriveFunctor
       DeriveGeneric
       DeriveLift
       DeriveTraversable
-      DerivingStrategies
-      DerivingVia
-      DisambiguateRecordFields
       DoAndIfThenElse
-      DuplicateRecordFields
       EmptyCase
       EmptyDataDecls
       ExistentialQuantification
       FlexibleContexts
       FlexibleInstances
-      FunctionalDependencies
-      GADTs
       GeneralizedNewtypeDeriving
       InstanceSigs
       KindSignatures
-      LambdaCase
-      LiberalTypeSynonyms
       MultiParamTypeClasses
-      MultiWayIf
       NamedFieldPuns
-      OverloadedLabels
-      OverloadedLists
-      OverloadedStrings
-      PackageImports
-      PartialTypeSignatures
       PatternGuards
-      PatternSynonyms
       PolyKinds
-      QuantifiedConstraints
-      QuasiQuotes
       RankNTypes
-      RecordWildCards
-      RecursiveDo
-      RoleAnnotations
       ScopedTypeVariables
       StandaloneDeriving
-      TemplateHaskell
       TupleSections
       TypeApplications
-      TypeFamilies
-      TypeFamilyDependencies
       TypeOperators
       TypeSynonymInstances
-      UndecidableInstances
-      UnicodeSyntax
-      ViewPatterns
-  ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base >=4.12 && <5
-    , incipit-core >=0.4
+      base ==4.*
+    , incipit-core >=0.4 && <0.6
     , polysemy-test >=0.6
     , polysemy-time
-    , tasty
+    , tasty >=1.1
     , time
   mixins:
       base hiding (Prelude)
