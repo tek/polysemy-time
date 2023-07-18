@@ -10,6 +10,7 @@
     ghcVersions = ["ghc810" "ghc90" "ghc92" "ghc94"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-chronos";
+    gen-overrides.enable = true;
 
     overrides = { hackage, ... }: {
       incipit-base = hackage "0.4.0.0" "0g04mw1si70g5kkgz9gnk460d4pvm65i30hd9abrg6g0ryizixqf";
