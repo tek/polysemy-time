@@ -1,4 +1,5 @@
 {-# options_haddock prune #-}
+{-# language FieldSelectors #-}
 
 -- |TimeUnit Class and Data Types, Internal
 module Polysemy.Time.Data.TimeUnit where

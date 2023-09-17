@@ -1,32 +1,29 @@
 {
   description = "A Polysemy effect for time";
 
-  inputs.hix.url = "git+https://git.tryp.io/tek/hix";
+  inputs = {
+    hix.url = "git+https://git.tryp.io/tek/hix";
+    polysemy-test.url = "git+https://git.tryp.io/tek/polysemy-test";
+  };
 
-  outputs = { hix, ...}:
-  let
-
-  in hix.lib.pro {
-    ghcVersions = ["ghc810" "ghc90" "ghc92" "ghc94"];
+  outputs = {hix, polysemy-test, ...}: hix.lib.pro ({config, ...}: {
+    ghcVersions = ["ghc92" "ghc94" "ghc96"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-chronos";
+    deps = [polysemy-test];
+    compiler = "ghc94";
     gen-overrides.enable = true;
 
-    overrides = { hackage, ... }: {
-      incipit-base = hackage "0.4.0.0" "0g04mw1si70g5kkgz9gnk460d4pvm65i30hd9abrg6g0ryizixqf";
-      incipit-core = hackage "0.4.0.0" "168m94c1480y8lhin1sbrwzr14dq13ixkgkcl7ikq78vcq267521";
-    };
-
     envs.dev.overrides = { hackage, ... }: {
-      incipit-base = hackage "0.5.1.0" "0hkqnqpdw8rvg4xzslw9sp3684ggyk9n4hr0lczwm8b0pzakzs0l";
-      incipit-core = hackage "0.5.1.0" "04lyzycvqxyjqcd703cd33lnlk5va9wj3czpsybah0ybydnrwabd";
-      polysemy-test = hackage "0.7.0.0" "1m6ncbihr742765rshz6w7dn450f3d2ip6ci3qah27lnz7yrwmp6";
-      polysemy = hackage "1.9.1.0" "05mhzjz6hz0dnxsn3cc0l6yyj5ch35gn8xfnx0a1gn3q8yljfg2a";
-      polysemy-plugin = hackage "0.4.5.0" "0v2k0l42zaangwv050xfv5jdqfrbvdxfr533291ndsxalv8n3xi8";
+      polysemy-test = hackage "0.8.0.1" "0fcaxq7l9dl3ha9m90fjzsf0vdbf478x17249s7x1k7qh3jz9s7a";
+      polysemy = hackage "1.9.1.2" "01vkiqxcjvvihgg8dvws76sfg0d98z8xyvpnj3g3nz02i078xf8j";
+      polysemy-plugin = hackage "0.4.5.1" "0afmx1vdgmvggk4sb4av91qnm8b3hr2kb4adcj9fhzq2w50393bc";
     };
 
-    envs.ghc94.overrides = { hackage, source, ... }: {
-      bytesmith = hackage "0.3.9.1" "026p9mzdjl7yjs4lm5p0i2i1pkbz2m75cz0vkyvyw6k93qbcz9v4";
+    envs.ghc96.overrides = {hackage, jailbreak, ...}: {
+      chronos = hackage "1.1.5.1" "009z2zmy5gba3h6r638r7g45bx1ylibhl28bf1crfl17j17kp3d1";
+      zigzag = jailbreak;
+      bytebuild = hackage "0.3.14.0" "1wmhsb8si083gi4zh58vk1l13ixs4p4lhjdcra5zv4amxr4drf0m";
     };
 
     cabal = {
@@ -85,6 +82,7 @@
         enable = true;
         dependencies = [
           "chronos ^>= 1.1.1"
+          config.packages.polysemy-time.dep.minor
           "polysemy-time ^>= ${import ./ops/version.nix}"
         ];
       };
@@ -102,5 +100,5 @@
 
     };
 
-  };
+  });
 }
