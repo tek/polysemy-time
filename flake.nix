@@ -15,9 +15,7 @@
     gen-overrides.enable = true;
 
     envs.dev.overrides = { hackage, ... }: {
-      polysemy-test = hackage "0.8.0.1" "0fcaxq7l9dl3ha9m90fjzsf0vdbf478x17249s7x1k7qh3jz9s7a";
-      polysemy = hackage "1.9.1.2" "01vkiqxcjvvihgg8dvws76sfg0d98z8xyvpnj3g3nz02i078xf8j";
-      polysemy-plugin = hackage "0.4.5.1" "0afmx1vdgmvggk4sb4av91qnm8b3hr2kb4adcj9fhzq2w50393bc";
+      polysemy-test = hackage "0.9.0.0" "1adkp48v04klsjyv8846w7ryf1fiqxb4ga69mps9vg2bp9fj5i7j";
     };
 
     envs.ghc96.overrides = {hackage, jailbreak, ...}: {
