@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.36.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -47,6 +47,7 @@ library
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -69,9 +70,9 @@ library
       NoFieldSelectors
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base ==4.*
-    , chronos >=1.1.1 && <1.2
-    , incipit-core >=0.4 && <0.6
+      base >=4.17.2.1 && <4.20
+    , chronos >=1.1.5
+    , incipit-core >=0.4.1.0 && <0.7
     , polysemy-time >=0.6.0.2 && <0.7
   mixins:
       base hiding (Prelude)
@@ -101,6 +102,7 @@ test-suite polysemy-chronos-test
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -123,13 +125,13 @@ test-suite polysemy-chronos-test
       NoFieldSelectors
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base ==4.*
-    , chronos >=1.1.1 && <1.2
-    , incipit-core >=0.4 && <0.6
+      base >=4.17.2.1 && <4.20
+    , chronos >=1.1.5
+    , incipit-core >=0.4.1.0 && <0.7
     , polysemy-chronos
-    , polysemy-test >=0.6
+    , polysemy-test >=0.6.0.0
     , polysemy-time >=0.6.0.2 && <0.7
-    , tasty >=1.1
+    , tasty >=1.4.2 && <1.5
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
