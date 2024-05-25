@@ -75,8 +75,98 @@ mkDerivation {
 ;
 }
 ;
+  polysemy-test = {
+  meta = {
+    sha256 = "0vdsid9xg41szx4g37lmg44h31q7j9ll805rgfrpr1ylf4f3x1hp";
+    ver = "0.10.0.0";
+  };
+  drv = { mkDerivation, base, hedgehog, incipit-core, lib, path, path-io
+, polysemy, tasty, tasty-hedgehog, transformers
+}:
+mkDerivation {
+  pname = "polysemy-test";
+  version = "0.10.0.0";
+  src = /nix/store/byqlnsg2xgbpagl85h2kgmj6bryigjbz-source;
+  enableSeparateDataOutput = true;
+  libraryHaskellDepends = [
+    base hedgehog incipit-core path path-io polysemy tasty
+    tasty-hedgehog transformers
+  ];
+  testHaskellDepends = [
+    base hedgehog incipit-core path polysemy tasty
+  ];
+  homepage = "https://github.com/tek/polysemy-test#readme";
+  description = "Polysemy effects for testing";
+  license = "BSD-2-Clause-Patent";
+}
+;
+}
+;
 };
 latest-polysemy-time = {
+  aeson = {
+  meta = {
+    sha256 = "12lr0rzlds8zrij140h0bcji25nawwp19dq0yyx93hz8ia9621fp";
+    ver = "2.2.2.0";
+  };
+  drv = { mkDerivation, base, base-compat, base-orphans, base16-bytestring
+, bytestring, character-ps, containers, data-fix, deepseq, Diff
+, directory, dlist, exceptions, filepath, generic-deriving
+, generically, ghc-prim, hashable, indexed-traversable
+, integer-conversion, integer-logarithms, lib, network-uri
+, OneTuple, primitive, QuickCheck, quickcheck-instances, scientific
+, semialign, strict, tagged, tasty, tasty-golden, tasty-hunit
+, tasty-quickcheck, template-haskell, text, text-iso8601
+, text-short, th-abstraction, these, time, time-compat
+, unordered-containers, uuid-types, vector, witherable
+}:
+mkDerivation {
+  pname = "aeson";
+  version = "2.2.2.0";
+  src = /nix/store/xdyc8zrazfiy1m8xnkwsxynb39wba1pv-source;
+  libraryHaskellDepends = [
+    base bytestring character-ps containers data-fix deepseq dlist
+    exceptions generically ghc-prim hashable indexed-traversable
+    integer-conversion integer-logarithms network-uri OneTuple
+    primitive QuickCheck scientific semialign strict tagged
+    template-haskell text text-iso8601 text-short th-abstraction these
+    time time-compat unordered-containers uuid-types vector witherable
+  ];
+  testHaskellDepends = [
+    base base-compat base-orphans base16-bytestring bytestring
+    containers data-fix deepseq Diff directory dlist filepath
+    generic-deriving generically ghc-prim hashable indexed-traversable
+    integer-logarithms network-uri OneTuple primitive QuickCheck
+    quickcheck-instances scientific strict tagged tasty tasty-golden
+    tasty-hunit tasty-quickcheck template-haskell text text-short these
+    time time-compat unordered-containers uuid-types vector
+  ];
+  homepage = "https://github.com/haskell/aeson";
+  description = "Fast JSON parsing and encoding";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  character-ps = {
+  meta = {
+    sha256 = "13yvm3ifpk6kfqba49r1xz0xyxcn0jw7xdkkblzsb5v0nf64g4dx";
+    ver = "0.1";
+  };
+  drv = { mkDerivation, base, lib }:
+mkDerivation {
+  pname = "character-ps";
+  version = "0.1";
+  src = /nix/store/4apydpmp9k1mpy7yrixfm1g4sddlwipd-source;
+  libraryHaskellDepends = [ base ];
+  testHaskellDepends = [ base ];
+  homepage = "https://github.com/phadej/character-ps";
+  description = "Pattern synonyms for ASCII characters for Word8, Word16 etc";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   incipit-base = {
   meta = {
     sha256 = "1hck35yfy0dcgimgnd90w02zvv7x7k456bljrbx2mwxalnhav9gf";
@@ -117,6 +207,34 @@ mkDerivation {
 ;
 }
 ;
+  path = {
+  meta = {
+    sha256 = "05b84rizmrii847pq2fbvlpna796bwxha1vc01c3vxb2rhrknrf7";
+    ver = "0.9.5";
+  };
+  drv = { mkDerivation, aeson, base, bytestring, deepseq, exceptions
+, filepath, genvalidity, genvalidity-hspec, genvalidity-property
+, hashable, hspec, lib, mtl, QuickCheck, template-haskell, text
+, validity
+}:
+mkDerivation {
+  pname = "path";
+  version = "0.9.5";
+  src = /nix/store/h806s0ygy5xlzxcrkndaddnz3md6pn6m-source;
+  libraryHaskellDepends = [
+    aeson base deepseq exceptions filepath hashable template-haskell
+    text
+  ];
+  testHaskellDepends = [
+    aeson base bytestring filepath genvalidity genvalidity-hspec
+    genvalidity-property hspec mtl QuickCheck template-haskell validity
+  ];
+  description = "Support for well-typed paths";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   path-io = {
   meta = {
     sha256 = "063ma7gzqr5c6s8a1yv72jgll3xdajvgclbc8w0ddmqgcrb62x2k";
@@ -137,6 +255,64 @@ mkDerivation {
   testHaskellDepends = [ base exceptions hspec path unix-compat ];
   homepage = "https://github.com/mrkkrp/path-io";
   description = "Interface to ‘directory’ package for users of ‘path’";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  polysemy-test = {
+  meta = {
+    sha256 = "0vdsid9xg41szx4g37lmg44h31q7j9ll805rgfrpr1ylf4f3x1hp";
+    ver = "0.10.0.0";
+  };
+  drv = { mkDerivation, base, hedgehog, incipit-core, lib, path, path-io
+, polysemy, tasty, tasty-hedgehog, transformers
+}:
+mkDerivation {
+  pname = "polysemy-test";
+  version = "0.10.0.0";
+  src = /nix/store/byqlnsg2xgbpagl85h2kgmj6bryigjbz-source;
+  enableSeparateDataOutput = true;
+  libraryHaskellDepends = [
+    base hedgehog incipit-core path path-io polysemy tasty
+    tasty-hedgehog transformers
+  ];
+  testHaskellDepends = [
+    base hedgehog incipit-core path polysemy tasty
+  ];
+  homepage = "https://github.com/tek/polysemy-test#readme";
+  description = "Polysemy effects for testing";
+  license = "BSD-2-Clause-Patent";
+}
+;
+}
+;
+  text-iso8601 = {
+  meta = {
+    sha256 = "0lk8y0g5p2zamkgvxy7i5lqfpa4wnic9vg2bl87s801fniwdij3m";
+    ver = "0.1.1";
+  };
+  drv = { mkDerivation, attoparsec, attoparsec-iso8601, base
+, integer-conversion, lib, QuickCheck, quickcheck-instances, tasty
+, tasty-bench, tasty-hunit, tasty-quickcheck, text, time
+, time-compat
+}:
+mkDerivation {
+  pname = "text-iso8601";
+  version = "0.1.1";
+  src = /nix/store/si7h80rdb1dc7vhcgiqj34lwfbxaym4y-source;
+  libraryHaskellDepends = [
+    base integer-conversion text time time-compat
+  ];
+  testHaskellDepends = [
+    base QuickCheck quickcheck-instances tasty tasty-hunit
+    tasty-quickcheck text time-compat
+  ];
+  benchmarkHaskellDepends = [
+    attoparsec attoparsec-iso8601 base tasty-bench text time-compat
+  ];
+  homepage = "https://github.com/haskell/aeson";
+  description = "Converting time to and from ISO 8601 text";
   license = lib.licenses.bsd3;
 }
 ;
