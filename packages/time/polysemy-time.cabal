@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.36.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -57,6 +57,7 @@ library
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -79,12 +80,12 @@ library
       NoFieldSelectors
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      aeson >=1.4
-    , base ==4.*
-    , incipit-core >=0.4 && <0.6
+      aeson
+    , base
+    , incipit-core
     , template-haskell
     , time
-    , torsor >=0.1
+    , torsor
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
@@ -115,6 +116,7 @@ test-suite polysemy-time-test
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -137,11 +139,11 @@ test-suite polysemy-time-test
       NoFieldSelectors
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base ==4.*
-    , incipit-core >=0.4 && <0.6
-    , polysemy-test >=0.6
+      base
+    , incipit-core
+    , polysemy-test
     , polysemy-time
-    , tasty >=1.1
+    , tasty
     , time
   mixins:
       base hiding (Prelude)

@@ -1,28 +1,29 @@
 {
   description = "A Polysemy effect for time";
 
-  inputs = {
-    hix.url = "git+https://git.tryp.io/tek/hix";
-    polysemy-test.url = "git+https://git.tryp.io/tek/polysemy-test";
-  };
+  inputs.hix.url = "git+https://git.tryp.io/tek/hix";
 
-  outputs = {hix, polysemy-test, ...}: hix.lib.pro ({config, ...}: {
-    ghcVersions = ["ghc92" "ghc94" "ghc96"];
+  outputs = {hix, ...}: hix.lib.pro ({config, ...}: let
+    overrides = {jailbreak, unbreak, ...}: {
+      polysemy-test = jailbreak unbreak;
+    };
+  in {
+    ghcVersions = ["ghc94" "ghc96" "ghc98"];
+    compat.versions = ["ghc96"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-chronos";
-    deps = [polysemy-test];
-    compiler = "ghc94";
     gen-overrides.enable = true;
-
-    envs.dev.overrides = { hackage, ... }: {
-      polysemy-test = hackage "0.9.0.0" "1adkp48v04klsjyv8846w7ryf1fiqxb4ga69mps9vg2bp9fj5i7j";
+    managed = {
+      enable = true;
+      sets = "each";
+      lower.enable = true;
+      envs.solverOverrides = overrides;
+      latest.compiler = "ghc98";
     };
 
-    envs.ghc96.overrides = {hackage, jailbreak, ...}: {
-      chronos = hackage "1.1.5.1" "009z2zmy5gba3h6r638r7g45bx1ylibhl28bf1crfl17j17kp3d1";
-      zigzag = jailbreak;
-      bytebuild = hackage "0.3.14.0" "1wmhsb8si083gi4zh58vk1l13ixs4p4lhjdcra5zv4amxr4drf0m";
-    };
+    inherit overrides;
+    envs.latest.overrides = overrides;
+    envs.lower.overrides = overrides;
 
     cabal = {
       license = "BSD-2-Clause-Patent";
