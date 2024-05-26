@@ -15,7 +15,6 @@
     gen-overrides.enable = true;
     managed = {
       enable = true;
-      sets = "each";
       lower.enable = true;
       envs.solverOverrides = overrides;
       latest.compiler = "ghc98";
