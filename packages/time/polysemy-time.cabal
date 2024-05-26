@@ -141,7 +141,7 @@ test-suite polysemy-time-test
   build-depends:
       base >=4.17.2.1 && <4.20
     , incipit-core >=0.4.1.0 && <0.7
-    , polysemy-test >=0.6.0.0 && <0.11
+    , polysemy-test >=0.3.1.7 && <0.11
     , polysemy-time
     , tasty >=1.4.2 && <1.5
     , time >=1.9.2 && <1.13

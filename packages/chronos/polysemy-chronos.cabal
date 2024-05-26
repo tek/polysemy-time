@@ -129,7 +129,7 @@ test-suite polysemy-chronos-test
     , chronos >=1.1.5 && <1.2
     , incipit-core >=0.4.1.0 && <0.7
     , polysemy-chronos
-    , polysemy-test >=0.6.0.0 && <0.11
+    , polysemy-test >=0.3.1.6 && <0.11
     , polysemy-time >=0.6.0.2 && <0.7
     , tasty >=1.4.2 && <1.5
   mixins:
