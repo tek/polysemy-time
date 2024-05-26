@@ -3,62 +3,72 @@
     polysemy-chronos = {
       base = {
         lower = "4.17.2.1";
-        upper = null;
+        upper = "4.20";
       };
       chronos = {
         lower = "1.1.5";
-        upper = null;
+        upper = "1.2";
       };
       incipit-core = {
         lower = "0.4.1.0";
-        upper = null;
+        upper = "0.7";
       };
       polysemy-test = {
         lower = "0.3.1.6";
-        upper = null;
+        upper = "0.11";
       };
       tasty = {
         lower = "1.4.2";
-        upper = null;
+        upper = "1.5";
       };
     };
     polysemy-time = {
       aeson = {
         lower = "2.1.2.1";
-        upper = null;
+        upper = "2.3";
       };
       base = {
         lower = "4.17.2.1";
-        upper = null;
+        upper = "4.20";
       };
       incipit-core = {
         lower = "0.4.1.0";
-        upper = null;
+        upper = "0.7";
       };
       polysemy-test = {
         lower = "0.3.1.6";
-        upper = null;
+        upper = "0.11";
       };
       tasty = {
         lower = "1.4.2";
-        upper = null;
+        upper = "1.5";
       };
       template-haskell = {
         lower = "2.19.0.0";
-        upper = null;
+        upper = "2.22";
       };
       time = {
         lower = "1.12.2";
-        upper = null;
+        upper = "1.13";
       };
       torsor = {
         lower = "0.1";
-        upper = null;
+        upper = "0.2";
       };
     };
   };
   versions = {
-    latest = {};
+    latest = {
+      aeson = "2.2.2.0";
+      base = "4.19.1.0";
+      chronos = "1.1.6.1";
+      incipit-core = "0.6.0.0";
+      polysemy-test = "0.10.0.0";
+      tasty = "1.4.3";
+      template-haskell = "2.21.0.0";
+      time = "1.12.2";
+      torsor = "0.1.0.1";
+    };
     lower = {
       aeson = "2.1.2.1";
       base = "4.17.2.1";
@@ -84,6 +94,44 @@
     };
   };
   overrides = {
+    latest = {
+      aeson = {
+        version = "2.2.2.0";
+        hash = "12lr0rzlds8zrij140h0bcji25nawwp19dq0yyx93hz8ia9621fp";
+      };
+      character-ps = {
+        version = "0.1";
+        hash = "13yvm3ifpk6kfqba49r1xz0xyxcn0jw7xdkkblzsb5v0nf64g4dx";
+      };
+      chronos = {
+        version = "1.1.6.1";
+        hash = "037h68ji0f362irn9n9qwvr7d1ff6inpbc8d5wa4d63223713k9m";
+      };
+      incipit-base = {
+        version = "0.6.0.0";
+        hash = "1hck35yfy0dcgimgnd90w02zvv7x7k456bljrbx2mwxalnhav9gf";
+      };
+      incipit-core = {
+        version = "0.6.0.0";
+        hash = "0gmngb4pinkpbsnclrgs6x016ffnls1g4xzz0hdzg2rpyl63d5ph";
+      };
+      path = {
+        version = "0.9.5";
+        hash = "05b84rizmrii847pq2fbvlpna796bwxha1vc01c3vxb2rhrknrf7";
+      };
+      path-io = {
+        version = "1.8.2";
+        hash = "063ma7gzqr5c6s8a1yv72jgll3xdajvgclbc8w0ddmqgcrb62x2k";
+      };
+      polysemy-test = {
+        version = "0.10.0.0";
+        hash = "0vdsid9xg41szx4g37lmg44h31q7j9ll805rgfrpr1ylf4f3x1hp";
+      };
+      text-iso8601 = {
+        version = "0.1.1";
+        hash = "0lk8y0g5p2zamkgvxy7i5lqfpa4wnic9vg2bl87s801fniwdij3m";
+      };
+    };
     lower = {
       cabal-doctest = {
         version = "1.0.9";
