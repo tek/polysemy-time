@@ -4,6 +4,9 @@ on:
     branches:
       - "**"
   pull_request:
+permissions:
+  contents: read
+  id-token: write
 jobs:
   check:
     runs-on: ubuntu-latest
