@@ -75,8 +75,8 @@ mkDerivation {
 ;
   chronos = {
   meta = {
-    sha256 = "037h68ji0f362irn9n9qwvr7d1ff6inpbc8d5wa4d63223713k9m";
-    ver = "1.1.6.1";
+    sha256 = "1pbfp25py682d17visa4i9rjxmiim8aykrgs7nv2q9anajv88kdx";
+    ver = "1.1.6.2";
   };
   drv = { mkDerivation, aeson, attoparsec, base, bytebuild, byteslice
 , bytesmith, bytestring, criterion, deepseq, hashable, HUnit, lib
@@ -86,8 +86,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "chronos";
-  version = "1.1.6.1";
-  src = /nix/store/94b0vp25iyp98kyinilv23im02h4xkpx-source;
+  version = "1.1.6.2";
+  src = /nix/store/4lqja84257d3yzxlf1vsz8687hydv3aj-source;
   libraryHaskellDepends = [
     aeson attoparsec base bytebuild byteslice bytesmith bytestring
     deepseq hashable natural-arithmetic primitive text text-short
@@ -110,16 +110,16 @@ mkDerivation {
 ;
   incipit-base = {
   meta = {
-    sha256 = "1hck35yfy0dcgimgnd90w02zvv7x7k456bljrbx2mwxalnhav9gf";
-    ver = "0.6.0.0";
+    sha256 = "0iyyvxpyyybn5ygr875pav6g5hbs00wa9jbr7qslszqpkfpy5x33";
+    ver = "0.6.1.0";
   };
   drv = { mkDerivation, base, bytestring, containers, data-default, lib
 , stm, text
 }:
 mkDerivation {
   pname = "incipit-base";
-  version = "0.6.0.0";
-  src = /nix/store/bcs2wgdcfmnm1msbd7n8qd27ikwv3rcm-source;
+  version = "0.6.1.0";
+  src = /nix/store/2k1isywgqm3pcbzdhwyp97n9250g044k-source;
   libraryHaskellDepends = [
     base bytestring containers data-default stm text
   ];
@@ -132,14 +132,14 @@ mkDerivation {
 ;
   incipit-core = {
   meta = {
-    sha256 = "0gmngb4pinkpbsnclrgs6x016ffnls1g4xzz0hdzg2rpyl63d5ph";
-    ver = "0.6.0.0";
+    sha256 = "144c239nxl8zi2ik3ycic3901gxn8rccij3g609n2zgnn3b6zilj";
+    ver = "0.6.1.0";
   };
   drv = { mkDerivation, base, incipit-base, lib, polysemy }:
 mkDerivation {
   pname = "incipit-core";
-  version = "0.6.0.0";
-  src = /nix/store/r29nfjc427wwr536jccy99r885kbyw02-source;
+  version = "0.6.1.0";
+  src = /nix/store/7bfdjb94bzganyaybhhjmxjcwypnsasp-source;
   libraryHaskellDepends = [ base incipit-base polysemy ];
   homepage = "https://github.com/tek/incipit-core#readme";
   description = "A Prelude for Polysemy";
