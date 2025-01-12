@@ -61,8 +61,8 @@
     latest = {
       aeson = "2.2.2.0";
       base = "4.19.1.0";
-      chronos = "1.1.6.1";
-      incipit-core = "0.6.0.0";
+      chronos = "1.1.6.2";
+      incipit-core = "0.6.1.0";
       polysemy-test = "0.10.0.0";
       tasty = "1.4.3";
       template-haskell = "2.21.0.0";
@@ -104,16 +104,16 @@
         hash = "13yvm3ifpk6kfqba49r1xz0xyxcn0jw7xdkkblzsb5v0nf64g4dx";
       };
       chronos = {
-        version = "1.1.6.1";
-        hash = "037h68ji0f362irn9n9qwvr7d1ff6inpbc8d5wa4d63223713k9m";
+        version = "1.1.6.2";
+        hash = "1pbfp25py682d17visa4i9rjxmiim8aykrgs7nv2q9anajv88kdx";
       };
       incipit-base = {
-        version = "0.6.0.0";
-        hash = "1hck35yfy0dcgimgnd90w02zvv7x7k456bljrbx2mwxalnhav9gf";
+        version = "0.6.1.0";
+        hash = "0iyyvxpyyybn5ygr875pav6g5hbs00wa9jbr7qslszqpkfpy5x33";
       };
       incipit-core = {
-        version = "0.6.0.0";
-        hash = "0gmngb4pinkpbsnclrgs6x016ffnls1g4xzz0hdzg2rpyl63d5ph";
+        version = "0.6.1.0";
+        hash = "144c239nxl8zi2ik3ycic3901gxn8rccij3g609n2zgnn3b6zilj";
       };
       path = {
         version = "0.9.5";
