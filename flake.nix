@@ -3,53 +3,11 @@
 
   inputs.hix.url = "git+https://git.tryp.io/tek/hix";
 
-  outputs = {hix, ...}: hix.lib.pro ({config, ...}: let
-
-    overrides = {jailbreak, unbreak, hackage, ...}: {
-      polysemy-test = unbreak;
-    };
-
-  in {
+  outputs = {hix, ...}: hix.lib.pro ({config, ...}: {
     ghcVersions = ["ghc94" "ghc96" "ghc98" "ghc910"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-chronos";
     gen-overrides.enable = true;
-    managed = {
-      enable = true;
-      lower.enable = true;
-      latest.compiler = "ghc910";
-      envs.solverOverrides = {hackage, jailbreak, unbreak, ...}: {
-        bytebuild = jailbreak;
-        chronos = jailbreak;
-        polysemy-test = jailbreak unbreak;
-        incipit-base = jailbreak;
-        incipit-core = jailbreak;
-      };
-    };
-
-    envs.latest.overrides = {hackage, jailbreak, unbreak, ...}: {
-      bytebuild = jailbreak;
-      polysemy-test = unbreak;
-    };
-
-    inherit overrides;
-
-    cabal = {
-      license = "BSD-2-Clause-Patent";
-      license-file = "LICENSE";
-      author = "Torsten Schmits";
-      prelude = {
-        enable = true;
-        package = "incipit-core";
-        module = "IncipitCore";
-      };
-      meta = {
-        maintainer = "hackage@tryp.io";
-        category = "Time";
-        github = "tek/polysemy-time";
-        extra-source-files = ["readme.md" "changelog.md"];
-      };
-    };
 
     packages.polysemy-time = {
       src = ./packages/time;
@@ -100,6 +58,45 @@
         ];
       };
 
+    };
+
+    cabal = {
+      license = "BSD-2-Clause-Patent";
+      license-file = "LICENSE";
+      author = "Torsten Schmits";
+      prelude = {
+        enable = true;
+        package = "incipit-core";
+        module = "IncipitCore";
+      };
+      meta = {
+        maintainer = "hackage@tryp.io";
+        category = "Time";
+        github = "tek/polysemy-time";
+        extra-source-files = ["readme.md" "changelog.md"];
+      };
+    };
+
+    managed = {
+      enable = true;
+      lower.enable = true;
+      latest.compiler = "ghc910";
+      envs.solverOverrides = {hackage, jailbreak, unbreak, ...}: {
+        bytebuild = jailbreak;
+        chronos = jailbreak;
+        polysemy-test = jailbreak unbreak;
+        incipit-base = jailbreak;
+        incipit-core = jailbreak;
+      };
+    };
+
+    overrides = {jailbreak, unbreak, hackage, ...}: {
+      polysemy-test = unbreak;
+    };
+
+    envs.latest.overrides = {hackage, jailbreak, unbreak, ...}: {
+      bytebuild = jailbreak;
+      polysemy-test = unbreak;
     };
 
     envs.ghc910.overrides = {hackage, jailbreak, ...}: {
