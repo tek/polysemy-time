@@ -4,20 +4,32 @@
   inputs.hix.url = "git+https://git.tryp.io/tek/hix";
 
   outputs = {hix, ...}: hix.lib.pro ({config, ...}: let
-    overrides = {jailbreak, unbreak, ...}: {
-      polysemy-test = jailbreak unbreak;
+
+    overrides = {jailbreak, unbreak, hackage, ...}: {
+      polysemy-test = unbreak;
     };
+
   in {
-    ghcVersions = ["ghc94" "ghc96" "ghc98"];
-    compat.versions = ["ghc96"];
+    ghcVersions = ["ghc94" "ghc96" "ghc98" "ghc910"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-chronos";
     gen-overrides.enable = true;
     managed = {
       enable = true;
       lower.enable = true;
-      envs.solverOverrides = overrides;
-      latest.compiler = "ghc98";
+      latest.compiler = "ghc910";
+      envs.solverOverrides = {hackage, jailbreak, unbreak, ...}: {
+        bytebuild = jailbreak;
+        chronos = jailbreak;
+        polysemy-test = jailbreak unbreak;
+        incipit-base = jailbreak;
+        incipit-core = jailbreak;
+      };
+    };
+
+    envs.latest.overrides = {hackage, jailbreak, unbreak, ...}: {
+      bytebuild = jailbreak;
+      polysemy-test = unbreak;
     };
 
     inherit overrides;
@@ -58,7 +70,6 @@
         enable = true;
         dependencies = [
           "polysemy-test"
-          "polysemy-time"
           "tasty"
           "time"
         ];
@@ -83,13 +94,20 @@
         enable = true;
         dependencies = [
           "chronos"
-          "polysemy-chronos"
           "polysemy-test"
           config.packages.polysemy-time.dep.minor
           "tasty"
         ];
       };
 
+    };
+
+    envs.ghc910.overrides = {hackage, jailbreak, ...}: {
+      bytebuild = jailbreak;
+      chronos = jailbreak;
+      incipit-base = hackage "0.6.1.0" "0iyyvxpyyybn5ygr875pav6g5hbs00wa9jbr7qslszqpkfpy5x33";
+      incipit-core = hackage "0.6.1.0" "144c239nxl8zi2ik3ycic3901gxn8rccij3g609n2zgnn3b6zilj";
+      polysemy-test = jailbreak;
     };
 
   });
