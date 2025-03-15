@@ -102,8 +102,8 @@
     envs.ghc910.overrides = {hackage, jailbreak, ...}: {
       bytebuild = jailbreak;
       chronos = jailbreak;
-      incipit-base = hackage "0.6.1.0" "0iyyvxpyyybn5ygr875pav6g5hbs00wa9jbr7qslszqpkfpy5x33";
-      incipit-core = hackage "0.6.1.0" "144c239nxl8zi2ik3ycic3901gxn8rccij3g609n2zgnn3b6zilj";
+      incipit-base = jailbreak;
+      incipit-core = jailbreak;
       polysemy-test = jailbreak;
     };
 
