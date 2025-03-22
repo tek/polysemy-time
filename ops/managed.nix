@@ -62,7 +62,7 @@
       aeson = "2.2.3.0";
       base = "4.20.0.0";
       chronos = "1.1.6.2";
-      incipit-core = "0.6.1.0";
+      incipit-core = "0.6.1.1";
       polysemy-test = "0.10.0.1";
       tasty = "1.5.3";
       template-haskell = "2.22.0.0";
@@ -100,12 +100,12 @@
         hash = "1pbfp25py682d17visa4i9rjxmiim8aykrgs7nv2q9anajv88kdx";
       };
       incipit-base = {
-        version = "0.6.1.0";
-        hash = "0iyyvxpyyybn5ygr875pav6g5hbs00wa9jbr7qslszqpkfpy5x33";
+        version = "0.6.1.1";
+        hash = "08ybv7j94yyznrxnrh744bi3i1a00sz8bf5ddfs9vfgfhhkrg8fn";
       };
       incipit-core = {
-        version = "0.6.1.0";
-        hash = "144c239nxl8zi2ik3ycic3901gxn8rccij3g609n2zgnn3b6zilj";
+        version = "0.6.1.1";
+        hash = "0qpw07f8ip6h7srqkbzfxyz1z36n75irhc6465s9xvrii1840b2k";
       };
       polysemy-test = {
         version = "0.10.0.1";
