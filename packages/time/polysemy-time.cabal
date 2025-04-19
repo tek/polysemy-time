@@ -143,7 +143,7 @@ test-suite polysemy-time-test
     , incipit-core >=0.4.1.0 && <0.7
     , polysemy-test >=0.3.1.6 && <0.11
     , polysemy-time
-    , tasty >=1.4.2 && <1.6
+    , tasty >=1.3 && <1.6
     , time >=1.12.2 && <1.13
   mixins:
       base hiding (Prelude)
