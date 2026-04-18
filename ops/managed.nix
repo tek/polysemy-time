@@ -71,7 +71,7 @@
   };
   versions = {
     latest = {
-      aeson = "2.2.3.0";
+      aeson = "2.2.4.1";
       base = "4.20.0.0";
       chronos = "1.1.6.2";
       incipit-core = "0.6.1.1";
@@ -107,6 +107,11 @@
   };
   overrides = {
     latest = {
+      aeson = {
+        version = "2.2.4.1";
+        hash = "1hf13pxldfyv49c4518s44zfspg6r54wylimca7kp59lhh5w099j";
+        repo = "hackage.haskell.org";
+      };
       async = {
         version = "2.2.6";
         hash = "1731pcifiskq6g1b72p34phx85l65ax7mbjw11310b3zwzk0ldyn";

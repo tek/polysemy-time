@@ -14,6 +14,51 @@ hix-build-tools = {
 hls = {
 };
 latest = {
+  aeson = {
+  meta = {
+    sha256 = "1hf13pxldfyv49c4518s44zfspg6r54wylimca7kp59lhh5w099j";
+    url = "https://hackage.haskell.org";
+    ver = "2.2.4.1";
+  };
+  drv = { mkDerivation, base, base-compat, base-orphans, base16-bytestring
+, bytestring, character-ps, containers, data-fix, deepseq, Diff
+, directory, dlist, exceptions, filepath, generic-deriving
+, generically, hashable, indexed-traversable, integer-conversion
+, integer-logarithms, lib, network-uri, OneTuple, primitive
+, QuickCheck, quickcheck-instances, scientific, semialign, strict
+, tagged, tasty, tasty-golden, tasty-hunit, tasty-quickcheck
+, template-haskell, text, text-iso8601, text-short, th-abstraction
+, these, time, time-compat, unordered-containers, uuid-types
+, vector, witherable
+}:
+mkDerivation {
+  pname = "aeson";
+  version = "2.2.4.1";
+  src = /nix/store/nqg2r8cak468751py2zaz1ck629jcpfz-source;
+  libraryHaskellDepends = [
+    base bytestring character-ps containers data-fix deepseq dlist
+    exceptions hashable indexed-traversable integer-conversion
+    integer-logarithms network-uri OneTuple primitive QuickCheck
+    scientific semialign strict tagged template-haskell text
+    text-iso8601 text-short th-abstraction these time time-compat
+    unordered-containers uuid-types vector witherable
+  ];
+  testHaskellDepends = [
+    base base-compat base-orphans base16-bytestring bytestring
+    containers data-fix Diff directory dlist filepath generic-deriving
+    generically hashable indexed-traversable integer-logarithms
+    network-uri OneTuple QuickCheck quickcheck-instances scientific
+    strict tagged tasty tasty-golden tasty-hunit tasty-quickcheck text
+    text-short these time time-compat unordered-containers uuid-types
+    vector
+  ];
+  homepage = "https://github.com/haskell/aeson";
+  description = "Fast JSON parsing and encoding";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   async = {
   meta = {
     sha256 = "1731pcifiskq6g1b72p34phx85l65ax7mbjw11310b3zwzk0ldyn";
