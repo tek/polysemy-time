@@ -15,7 +15,7 @@
       };
       polysemy-chronos = {
         lower = null;
-        upper = null;
+        upper = "0.8";
       };
       polysemy-test = {
         lower = "0.10.0.1";
@@ -23,7 +23,7 @@
       };
       polysemy-time = {
         lower = null;
-        upper = null;
+        upper = "0.8";
       };
       tasty = {
         lower = "1.5.2";
@@ -49,7 +49,7 @@
       };
       polysemy-time = {
         lower = null;
-        upper = null;
+        upper = "0.8";
       };
       tasty = {
         lower = "1.5.2";
@@ -521,6 +521,13 @@
       };
     };
   };
-  packages = {};
+  packages = {
+    polysemy-chronos = {
+      version = "0.7.0.2";
+    };
+    polysemy-time = {
+      version = "0.7.0.2";
+    };
+  };
   resolving = false;
 }

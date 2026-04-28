@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-time
-version:        0.7.0.1
+version:        0.7.0.2
 synopsis:       A Polysemy effect for time
 description:    See https://hackage.haskell.org/package/polysemy-time/docs/Polysemy-Time.html
 category:       Time
@@ -142,7 +142,7 @@ test-suite polysemy-time-test
       base >=4.17.2.1 && <4.22
     , incipit-core >=0.4.1.0 && <0.8
     , polysemy-test >=0.10.0.1 && <0.12
-    , polysemy-time
+    , polysemy-time <0.8
     , tasty >=1.5.2 && <1.6
     , time >=1.9.2 && <1.15
   mixins:

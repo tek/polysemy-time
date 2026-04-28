@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-chronos
-version:        0.7.0.1
+version:        0.7.0.2
 synopsis:       A Polysemy effect for Chronos
 description:    See https://hackage.haskell.org/package/polysemy-chronos/docs/Polysemy-Chronos.html
 category:       Time
@@ -73,7 +73,7 @@ library
       base >=4.17.2.1 && <4.22
     , chronos >=1.1.5 && <1.2
     , incipit-core >=0.4.1.0 && <0.8
-    , polysemy-time >=0.7.0.1 && <0.8
+    , polysemy-time <0.8
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
@@ -128,9 +128,9 @@ test-suite polysemy-chronos-test
       base >=4.17.2.1 && <4.22
     , chronos >=1.1.5 && <1.2
     , incipit-core >=0.4.1.0 && <0.8
-    , polysemy-chronos
+    , polysemy-chronos <0.8
     , polysemy-test >=0.10.0.1 && <0.12
-    , polysemy-time >=0.7.0.1 && <0.8
+    , polysemy-time <0.8
     , tasty >=1.5.2 && <1.6
   mixins:
       base hiding (Prelude)
