@@ -4,8 +4,8 @@
   inputs.hix.url = "git+https://git.tryp.io/tek/hix";
 
   outputs = {hix, ...}: hix.lib.pro ({config, ...}: {
-    ghcVersions = ["ghc94" "ghc96" "ghc98" "ghc910"];
-    hackage.versionFile = "ops/version.nix";
+    ghcVersions = ["ghc98" "ghc910" "ghc912"];
+    release.versionFile = "ops/version.nix";
     main = "polysemy-chronos";
     gen-overrides.enable = true;
 
@@ -64,6 +64,7 @@
       license = "BSD-2-Clause-Patent";
       license-file = "LICENSE";
       author = "Torsten Schmits";
+      language = "GHC2021";
       prelude = {
         enable = true;
         package = "incipit-core";
@@ -80,32 +81,24 @@
     managed = {
       enable = true;
       lower.enable = true;
-      latest.compiler = "ghc910";
+      latest.compiler = "ghc912";
+      lower.compiler = "ghc94";
       envs.solverOverrides = {hackage, jailbreak, unbreak, ...}: {
-        bytebuild = jailbreak;
-        chronos = jailbreak;
-        polysemy-test = jailbreak unbreak;
-        incipit-base = jailbreak;
-        incipit-core = jailbreak;
+        bytesmith = hackage "0.3.11.0" "1z083sx6gbrsnlwfhiwcpym1kwyxmjhwrngsi3axa7bmg5c5za5c";
       };
     };
 
-    overrides = {jailbreak, unbreak, hackage, ...}: {
-      polysemy-test = unbreak;
-    };
-
-    envs.latest.overrides = {hackage, jailbreak, unbreak, ...}: {
-      bytebuild = jailbreak;
-      polysemy-test = unbreak;
-    };
-
-    envs.ghc910.overrides = {hackage, jailbreak, ...}: {
-      bytebuild = jailbreak;
+    package-sets.ghc98.overrides = {jailbreak, ...}: {
       chronos = jailbreak;
-      incipit-base = jailbreak;
-      incipit-core = jailbreak;
+    };
+
+    package-sets.ghc912.overrides = {jailbreak, ...}: {
       polysemy-test = jailbreak;
     };
+
+    hackage.repos."hackage.haskell.org".user = "tek";
+
+    internal.hixCli.dev = true;
 
   });
 }
