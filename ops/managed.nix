@@ -74,7 +74,7 @@
       aeson = "2.2.4.1";
       base = "4.21.0.0";
       chronos = "1.1.7.0";
-      incipit-core = "0.7.0.1";
+      incipit-core = "0.7.0.2";
       polysemy-test = "0.11.0.1";
       tasty = "1.5.4";
       template-haskell = "2.23.0.0";
@@ -118,8 +118,8 @@
         repo = "hackage.haskell.org";
       };
       incipit-core = {
-        version = "0.7.0.1";
-        hash = "1bnaqzdc1vs9vcdlbaljdwv586syam3ahppqq9lwmg2jcvqp2zqr";
+        version = "0.7.0.2";
+        hash = "0izgrcc75icfv9hncrcp5dwc40ydjvc3p2xi10n221nkan6wq6hc";
         repo = "hackage.haskell.org";
       };
       path = {
