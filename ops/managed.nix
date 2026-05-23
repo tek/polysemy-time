@@ -33,7 +33,7 @@
     polysemy-time = {
       aeson = {
         lower = "2.1.0.0";
-        upper = "2.3";
+        upper = "2.4";
       };
       base = {
         lower = "4.17.2.1";
@@ -71,7 +71,7 @@
   };
   versions = {
     latest = {
-      aeson = "2.2.5.0";
+      aeson = "2.3.0.0";
       base = "4.21.0.0";
       chronos = "1.1.7.0";
       incipit-core = "0.7.0.2";
@@ -108,8 +108,8 @@
   overrides = {
     latest = {
       aeson = {
-        version = "2.2.5.0";
-        hash = "192lzdpmiwinxq1wb9kzw3jfapxz1b5hwl31i4abfrhxrx4i72j6";
+        version = "2.3.0.0";
+        hash = "0xmdq5pgp66c2wr3ibsh38br7j5zynk9i8i2hvqp820bxh9hi1cw";
         repo = "hackage.haskell.org";
       };
       chronos = {
@@ -145,6 +145,11 @@
       tasty-hedgehog = {
         version = "1.4.0.2";
         hash = "04kg2qdnsqzzmj3xggy2jcgidlp21lsjkz4sfnbq7b1yhrv2vbbc";
+        repo = "hackage.haskell.org";
+      };
+      text-iso8601 = {
+        version = "0.2.0.0";
+        hash = "0qh0lgfd0rav0wa93chi983jyhdqzalrj5ywrvv65fnig111nv0h";
         repo = "hackage.haskell.org";
       };
     };

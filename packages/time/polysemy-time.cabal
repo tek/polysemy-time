@@ -80,7 +80,7 @@ library
       ViewPatterns
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      aeson >=2.1.0.0 && <2.3
+      aeson >=2.1.0.0 && <2.4
     , base >=4.17.2.1 && <4.22
     , incipit-core >=0.4.1.0 && <0.8
     , template-haskell >=2.19.0.0 && <2.24
