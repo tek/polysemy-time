@@ -76,7 +76,7 @@
       chronos = "1.1.7.0";
       incipit-core = "0.7.0.2";
       polysemy-test = "0.11.0.1";
-      tasty = "1.5.4";
+      tasty = "1.5.5";
       template-haskell = "2.23.0.0";
       time = "1.14";
       torsor = "0.1.0.1";
@@ -138,8 +138,8 @@
         repo = "hackage.haskell.org";
       };
       tasty = {
-        version = "1.5.4";
-        hash = "0x6khif6n0rzfgkvrbiagg1sj0lwmjfr6qarjnjwmb9ywdk7598b";
+        version = "1.5.5";
+        hash = "1h1myhp1g5y6iwzx0m29w5s7vpay9cm3c83jr4g2c4mpjjyqixil";
         repo = "hackage.haskell.org";
       };
       tasty-hedgehog = {
